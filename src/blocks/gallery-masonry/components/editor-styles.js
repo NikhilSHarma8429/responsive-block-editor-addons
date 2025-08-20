@@ -3,7 +3,13 @@
  */
 import generateCSS from "../../../generateCSS";
 import generateCSSUnit from "../../../generateCSSUnit";
-import { getFontFamily } from "../../../utils/font";
+
+const mapAlign = (a) => {
+  if (!a) return undefined;
+  if (a === "start") return "left";
+  if (a === "end") return "right";
+  return a;
+};
 
 function EditorStyles(props) {
   const {
@@ -82,6 +88,9 @@ function EditorStyles(props) {
     filterTabLeftBorderwidthMobile,
     filterTabIsBorderwidthControlConnected,
     filterTabBorderColor,
+    filterTabAlignment,
+    filterTabAlignmentTablet,
+    filterTabAlignmentMobile,
   } = props.attributes;
 
   var selectors = {
@@ -95,9 +104,11 @@ function EditorStyles(props) {
       'margin-right': generateCSSUnit(blockRightMargin, "px"),
       'margin-bottom': generateCSSUnit(blockBottomMargin, "px"),
       'margin-left': generateCSSUnit(blockLeftMargin, "px"),
+      '--filter-tab-hover-background-color': filterTabHoverBackgroundColor || "#0073aa",
+      '--filter-tab-hover-text-color': filterTabHoverTextColor || "#fff",
     },
-    " .gallery-filter-wrapper, .category-filters": {
-      'font-family': filterTabTypographyFontFamily && filterTabTypographyFontFamily !== "Default" ? getFontFamily(filterTabTypographyFontFamily) : undefined,
+    " .rba-filter-tabs, .gallery-filter-wrapper, .category-filters": {
+      'font-family': filterTabTypographyFontFamily && filterTabTypographyFontFamily !== "Default" ? filterTabTypographyFontFamily : undefined,
       'font-size': filterTabTypographyFontSize ? generateCSSUnit(filterTabTypographyFontSize, 'px') : '14px',
       'font-weight': filterTabTypographyFontWeight || 'normal',
       'line-height': filterTabTypographyLineHeight || 'normal',
@@ -105,9 +116,10 @@ function EditorStyles(props) {
       'text-transform': filterTabTypographyTextTransform || 'none',
       'text-decoration': filterTabTypographyTextDecoration || 'none',
       'margin-bottom': filterTabBottomSpacing ? generateCSSUnit(filterTabBottomSpacing, 'px') : '20px',
+      'text-align': mapAlign(filterTabAlignment),
     },
-    " .gallery-filter-wrapper button, .category-filters button": {
-      'font-family': filterTabTypographyFontFamily && filterTabTypographyFontFamily !== "Default" ? getFontFamily(filterTabTypographyFontFamily) : undefined,
+    " .rba-filter-tabs .gallery-filter-button, .gallery-filter-wrapper button, .category-filters button": {
+      'font-family': filterTabTypographyFontFamily && filterTabTypographyFontFamily !== "Default" ? filterTabTypographyFontFamily : undefined,
       'font-size': filterTabTypographyFontSize ? generateCSSUnit(filterTabTypographyFontSize, 'px') : '14px',
       'font-weight': filterTabTypographyFontWeight || 'normal',
       'line-height': filterTabTypographyLineHeight || 'normal',
@@ -129,7 +141,7 @@ function EditorStyles(props) {
       'border-bottom': filterTabBorderStyle !== "none" ? `${filterTabBottomBorderwidth || 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
       'border-left': filterTabBorderStyle !== "none" ? `${filterTabLeftBorderwidth || 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
     },
-    " .gallery-filter-wrapper button:hover, .category-filters button:hover": {
+    " .rba-filter-tabs .gallery-filter-button.is-active, .rba-filter-tabs .gallery-filter-button:hover, .gallery-filter-wrapper button:hover, .category-filters button:hover": {
       'background-color': filterTabHoverBackgroundColor || '#0073aa',
       'color': filterTabHoverTextColor || '#fff',
       'border-top': filterTabBorderStyle !== "none" ? `${filterTabTopBorderwidth || 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
@@ -151,11 +163,12 @@ function EditorStyles(props) {
       'margin-bottom': generateCSSUnit(blockBottomMarginMobile, "px"),
       'margin-left': generateCSSUnit(blockLeftMarginMobile, "px"),
     },
-    " .gallery-filter-wrapper, .category-filters": {
+    " .rba-filter-tabs, .gallery-filter-wrapper, .category-filters": {
       'font-size': filterTabTypographyFontSizeMobile ? generateCSSUnit(filterTabTypographyFontSizeMobile, 'px') : undefined,
       'margin-bottom': filterTabBottomSpacingMobile ? generateCSSUnit(filterTabBottomSpacingMobile, 'px') : undefined,
+      'text-align': mapAlign(filterTabAlignmentMobile),
     },
-    " .gallery-filter-wrapper button, .category-filters button": {
+    " .rba-filter-tabs .gallery-filter-button, .gallery-filter-wrapper button, .category-filters button": {
       'font-size': filterTabTypographyFontSizeMobile ? generateCSSUnit(filterTabTypographyFontSizeMobile, 'px') : undefined,
       'padding-top': filterTabTopPaddingMobile ? generateCSSUnit(filterTabTopPaddingMobile, 'px') : undefined,
       'padding-right': filterTabRightPaddingMobile ? generateCSSUnit(filterTabRightPaddingMobile, 'px') : undefined,
@@ -163,7 +176,7 @@ function EditorStyles(props) {
       'padding-left': filterTabLeftPaddingMobile ? generateCSSUnit(filterTabLeftPaddingMobile, 'px') : undefined,
       'margin-right': filterTabSpacingBetweenMobile ? generateCSSUnit(filterTabSpacingBetweenMobile, 'px') : undefined,
     },
-    " .gallery-filter-wrapper button:hover, .category-filters button:hover": {
+    " .rba-filter-tabs .gallery-filter-button.is-active, .rba-filter-tabs .gallery-filter-button:hover, .gallery-filter-wrapper button:hover, .category-filters button:hover": {
       'border-top': filterTabBorderStyle !== "none" ? `${filterTabTopBorderwidthMobile || 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
       'border-right': filterTabBorderStyle !== "none" ? `${filterTabRightBorderwidthMobile || 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
       'border-bottom': filterTabBorderStyle !== "none" ? `${filterTabBottomBorderwidthMobile || 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
@@ -183,11 +196,12 @@ function EditorStyles(props) {
       'margin-bottom': generateCSSUnit(blockBottomMarginTablet, "px"),
       'margin-left': generateCSSUnit(blockLeftMarginTablet, "px"),
     },
-    " .gallery-filter-wrapper, .category-filters": {
+    " .rba-filter-tabs, .gallery-filter-wrapper, .category-filters": {
       'font-size': filterTabTypographyFontSizeTablet ? generateCSSUnit(filterTabTypographyFontSizeTablet, 'px') : undefined,
       'margin-bottom': filterTabBottomSpacingTablet ? generateCSSUnit(filterTabBottomSpacingTablet, 'px') : undefined,
+      'text-align': mapAlign(filterTabAlignmentTablet),
     },
-    " .gallery-filter-wrapper button, .category-filters button": {
+    " .rba-filter-tabs .gallery-filter-button, .gallery-filter-wrapper button, .category-filters button": {
       'font-size': filterTabTypographyFontSizeTablet ? generateCSSUnit(filterTabTypographyFontSizeTablet, 'px') : undefined,
       'padding-top': filterTabTopPaddingTablet ? generateCSSUnit(filterTabTopPaddingTablet, 'px') : undefined,
       'padding-right': filterTabRightPaddingTablet ? generateCSSUnit(filterTabRightPaddingTablet, 'px') : undefined,
@@ -195,7 +209,7 @@ function EditorStyles(props) {
       'padding-left': filterTabLeftPaddingTablet ? generateCSSUnit(filterTabLeftPaddingTablet, 'px') : undefined,
       'margin-right': filterTabSpacingBetweenTablet ? generateCSSUnit(filterTabSpacingBetweenTablet, 'px') : undefined,
     },
-    " .gallery-filter-wrapper button:hover, .category-filters button:hover": {
+    " .rba-filter-tabs .gallery-filter-button.is-active, .rba-filter-tabs .gallery-filter-button:hover, .gallery-filter-wrapper button:hover, .category-filters button:hover": {
       'border-top': filterTabBorderStyle !== "none" ? `${filterTabTopBorderwidthTablet || 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
       'border-right': filterTabBorderStyle !== "none" ? `${filterTabRightBorderwidthTablet || 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
       'border-bottom': filterTabBorderStyle !== "none" ? `${filterTabBottomBorderwidthTablet || 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
@@ -204,11 +218,11 @@ function EditorStyles(props) {
   };
 
   var styling_css = "";
-  var id = `.wp-block-responsive-block-editor-addons-gallery-masonry.block-${block_id}`;
+  var idSel = `.wp-block-responsive-block-editor-addons-gallery-masonry.block-${block_id}`;
 
-  styling_css = generateCSS(selectors, id);
-  styling_css += generateCSS(tablet_selectors, id, true, "tablet");
-  styling_css += generateCSS(mobile_selectors, id, true, "mobile");
+  styling_css = generateCSS(selectors, idSel);
+  styling_css += generateCSS(tablet_selectors, idSel, true, "tablet");
+  styling_css += generateCSS(mobile_selectors, idSel, true, "mobile");
 
   return styling_css;
 }

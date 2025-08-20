@@ -24,6 +24,16 @@
     vertical-align: bottom;
   }
 
+  // .rba-gallery-items {
+  //   display: grid;
+  //   grid-template-columns: repeat(3, 1fr);
+  //   gap: 10px;
+  // }
+
+  .is-hidden-by-default {
+    display: none !important;
+  }
+
   figcaption {
     background: linear-gradient(
       0deg,
