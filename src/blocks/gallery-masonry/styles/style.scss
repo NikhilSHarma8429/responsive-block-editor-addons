@@ -60,6 +60,52 @@
     bottom: 3em;
   }
   
+  // Lightbox styles
+  &.has-lightbox, .has-lightbox {
+    .responsive-block-editor-addons-gallery--figure {
+      cursor: zoom-in;
+      
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+  
+  // Caption styles
+  .responsive-block-editor-addons-gallery--caption {
+    display: block !important;
+  }
+  
+  &.has-caption-style-dark, .has-caption-style-dark {
+    .responsive-block-editor-addons-gallery--caption {
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.7) 0,
+        rgba(0, 0, 0, 0.3) 50%,
+        transparent
+      );
+      color: #fff;
+    }
+  }
+  
+  &.has-caption-style-light, .has-caption-style-light {
+    .responsive-block-editor-addons-gallery--caption {
+      background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.9) 0,
+        rgba(255, 255, 255, 0.7) 50%,
+        transparent
+      );
+      color: #000;
+    }
+  }
+  
+  &.has-caption-style-none, .has-caption-style-none {
+    .responsive-block-editor-addons-gallery--caption {
+      display: none !important;
+    }
+  }
+  
   // Filterable Gallery Tab Alignment Styles
   .gallery-filter-wrapper {
     border: none;

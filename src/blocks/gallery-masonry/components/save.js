@@ -6,6 +6,7 @@ import { RichText } from "@wordpress/block-editor";
 const save = ({ attributes, className }) => {
   const {
     captions,
+    captionStyle = "dark",
     gutter,
     gutterMobile,
     gutterTablet,
@@ -32,7 +33,17 @@ const save = ({ attributes, className }) => {
   const sortedImages = [...images].sort((a, b) => a.order - b.order);
 
   const appendClass = `block-${block_id}`;
-  const outerClasses = className ? `${className} ${appendClass}` : appendClass;
+  let outerClasses = className ? `${className} ${appendClass}` : appendClass;
+  
+  // Add lightbox class if enabled
+  if (lightbox) {
+    outerClasses += " has-lightbox";
+  }
+  
+  // Add caption style class
+  if (captions) {
+    outerClasses += ` has-caption-style-${captionStyle}`;
+  }
 
   // Get unique categories for filter buttons
   const categories = Array.from(
