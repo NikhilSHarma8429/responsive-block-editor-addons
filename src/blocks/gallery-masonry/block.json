@@ -241,7 +241,8 @@
       "type": "number"
     },
     "filterTabRightPaddingMobile": {
-      "type": "number"
+      "type": "number",
+      "default": 30
     },
     "filterTabBottomPaddingMobile": {
       "type": "number"

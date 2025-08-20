@@ -22,6 +22,7 @@ const save = ({ attributes, className }) => {
     allTabLabel = "All",
     setDefaultCategory,
     defaultCategory,
+    enableResponsiveSupport,
   } = attributes;
 
   if (!images || images.length === 0) {
@@ -51,40 +52,54 @@ const save = ({ attributes, className }) => {
   return (
     <div className={outerClasses} data-rba-gallery-block>
       {shouldShowFilters && (
-        <div className="gallery-filter-wrapper" style={{ marginBottom: "20px" }}>
-          <button 
-            className={`gallery-filter-button ${defaultActiveCategory === "All" || defaultActiveCategory === "all" ? "is-active" : ""}`}
-            data-category="All"
-            style={{
-              marginRight: "10px",
-              padding: "6px 12px",
-              cursor: "pointer",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-              backgroundColor: (defaultActiveCategory === "All" || defaultActiveCategory === "all") ? "#0073aa" : "#f2f2f2",
-              color: (defaultActiveCategory === "All" || defaultActiveCategory === "all") ? "#fff" : "#000"
-            }}
-          >
-            {allTabLabel}
-          </button>
-          {categories.map((cat) => (
+        <div className={`gallery-filter-wrapper ${enableResponsiveSupport ? 'has-responsive-support' : ''}`}>
+          {/* Desktop tabs */}
+          <div className="rba-gf-tabs">
             <button 
-              key={cat}
-              className={`gallery-filter-button ${defaultActiveCategory === cat ? "is-active" : ""}`}
-              data-category={cat}
-              style={{
-                marginRight: "10px",
-                padding: "6px 12px",
-                cursor: "pointer",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-                backgroundColor: defaultActiveCategory === cat ? "#0073aa" : "#f2f2f2",
-                color: defaultActiveCategory === cat ? "#fff" : "#000"
-              }}
+              className={`gallery-filter-button ${defaultActiveCategory === "All" || defaultActiveCategory === "all" ? "is-active" : ""}`}
+              data-category="All"
             >
-              {cat}
+              {allTabLabel}
             </button>
-          ))}
+            {categories.map((cat) => (
+              <button 
+                key={cat}
+                className={`gallery-filter-button ${defaultActiveCategory === cat ? "is-active" : ""}`}
+                data-category={cat}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+          
+          {/* Mobile dropdown */}
+          {enableResponsiveSupport && (
+            <details className="rba-gf-dropdown">
+              <summary className="gallery-filter-button rba-gf-toggle">
+                {defaultActiveCategory === "All" || defaultActiveCategory === "all" ? allTabLabel : defaultActiveCategory}
+              </summary>
+              <ul className="rba-gf-menu">
+                <li>
+                  <button 
+                    className={`gallery-filter-button dropdown-item ${defaultActiveCategory === "All" || defaultActiveCategory === "all" ? "is-active" : ""}`}
+                    data-category="All"
+                  >
+                    {allTabLabel}
+                  </button>
+                </li>
+                {categories.map((cat) => (
+                  <li key={cat}>
+                    <button 
+                      className={`gallery-filter-button dropdown-item ${defaultActiveCategory === cat ? "is-active" : ""}`}
+                      data-category={cat}
+                    >
+                      {cat}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
         </div>
       )}
       <div className="rba-gallery-items">
