@@ -35,10 +35,8 @@ const save = ({ attributes, className }) => {
   const appendClass = `block-${block_id}`;
   let outerClasses = className ? `${className} ${appendClass}` : appendClass;
   
-  // Add lightbox class if enabled
-  if (lightbox) {
-    outerClasses += " has-lightbox";
-  }
+  // Note: Lightbox class is now applied to individual figures instead of main container
+  // to match the release version lightbox expectations
   
   // Add caption style class
   if (captions) {
@@ -164,7 +162,7 @@ const save = ({ attributes, className }) => {
               data-category={imageCategory}
               style={{ display: shouldShowByDefault ? "" : "none" }}
             >
-              <figure className="responsive-block-editor-addons-gallery--figure">
+              <figure className={`responsive-block-editor-addons-gallery--figure ${lightbox ? 'has-lightbox' : ''}`}>
                 {imageContent}
                 {captions && image.caption && image.caption.length > 0 && (
                   <RichText.Content
