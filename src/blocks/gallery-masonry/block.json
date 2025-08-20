@@ -356,6 +356,10 @@
     "gutterMobile": { 
       "type": "number",
       "default": 0
+    },
+    "radius": {
+      "type": "number",
+      "default": 0
     }
   }
 }

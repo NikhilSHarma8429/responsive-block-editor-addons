@@ -43,20 +43,6 @@ const save = ({ attributes, className }) => {
   );
 
   // Build the complete HTML structure
-  const masonryStyles = {
-    display: "grid",
-    gridTemplateColumns: `repeat(${columnsize}, 1fr)`,
-    gap: `${gutter}px`,
-  };
-
-  const buttonStyles = {
-    marginRight: "0.5em",
-    padding: "0.4em 0.8em",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
-  };
-
   const shouldShowFilters = enableCategoryFilter && categories.length > 0;
 
   // Determine which category should be active by default
@@ -101,7 +87,7 @@ const save = ({ attributes, className }) => {
           ))}
         </div>
       )}
-      <div className="rba-gallery-items" style={masonryStyles}>
+      <div className="rba-gallery-items">
         {sortedImages.map((image) => {
           let href = "";
 
@@ -122,10 +108,6 @@ const save = ({ attributes, className }) => {
             href = "";
           }
 
-          const imgStyle = {
-            width: customWidth || "auto",
-            height: customHeight || "auto",
-          };
           const imgClass = image.id ? `wp-image-${image.id}` : "";
           const imageCategory = image.rba_category || "uncategorized";
           
@@ -137,7 +119,6 @@ const save = ({ attributes, className }) => {
           
           const img = (
             <img
-              style={imgStyle}
               src={image.url}
               alt={image.alt || ""}
               data-id={image.id || ""}
