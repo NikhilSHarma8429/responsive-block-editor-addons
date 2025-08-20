@@ -34,6 +34,11 @@
     display: none !important;
   }
 
+  // Filtering is CSS-controlled via a class the JS toggles
+  .responsive-block-editor-addons-gallery--item.is-hidden {
+    display: none !important;
+  }
+
   figcaption {
     background: linear-gradient(
       0deg,
@@ -149,6 +154,14 @@
         // Show menu when details is open
         .rba-gf-dropdown[open] .rba-gf-menu {
           display: block;
+        }
+
+        // Dropdown is purely CSS-driven
+        .gallery-filter-wrapper details[open] .gallery-filter-options {
+          display: block;
+        }
+        .gallery-filter-wrapper details:not([open]) .gallery-filter-options {
+          display: none;
         }
         
         // Change arrow when open

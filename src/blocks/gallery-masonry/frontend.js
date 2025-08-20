@@ -10,9 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const initiallyActive = wrapper.querySelector(".gallery-filter-button.is-active[data-category]") || buttons[0];
 
     function applyFilter(cat) {
+      const target = (cat || "").trim().toLowerCase();
       items.forEach((item) => {
-        const show = cat === "All" || cat === "all" || item.dataset.category === cat;
-        item.style.display = show ? "" : "none";
+        const match = target === "all" || (item.dataset.category || "").toLowerCase() === target;
+        item.classList.toggle("is-hidden", !match);  
       });
     }
 
@@ -35,14 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
         
         applyFilter(cat);
         setActive(btn);
-
-        // If chosen inside <details>, reflect label and close
-        const details = btn.closest("details");
-        if (details && details.hasAttribute("open")) {
-          const summary = details.querySelector("summary");
-          if (summary) summary.textContent = btn.textContent;
-          details.removeAttribute("open");
-        }
       });
     });
 
