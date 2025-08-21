@@ -6857,6 +6857,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'customWidth'              => '',
 				'customHeight'             => '',
 				'columnsize'               => 3,
+				'filterTabRightPaddingMobile' => 30,
 			);
 		}
 
