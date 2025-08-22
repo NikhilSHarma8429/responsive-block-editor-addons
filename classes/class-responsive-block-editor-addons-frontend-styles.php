@@ -6581,8 +6581,8 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-right'          => self::get_css_value( $attr['blockRightMargin'], 'px' ),
 					'margin-bottom'         => self::get_css_value( $attr['blockBottomMargin'], 'px' ),
 					'margin-left'           => self::get_css_value( $attr['blockLeftMargin'], 'px' ),
+					'position'				=> 'relative',
 				),
-
 				' .responsive-block-editor-addons-gallery--item' => array(
 					'display'                => 'block',
 					'width'                  => '100%',
@@ -6590,6 +6590,8 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'-webkit-column-break-inside' => 'avoid',
 					'page-break-inside'      => 'avoid',
 					'margin'                 => '0 0 ' . self::get_css_value( $attr['gutter'], 'px' ) . ' 0',
+					'position'				 => 'absolute',
+					'width' 				 => 'calc((100% / ' . $attr['columnsize'] . ') - ' . ( $attr['gutter'] === 0 ? '0px' : self::get_css_value( $attr['gutter'], 'px' ) ) . ')',	
 				),
 				' .responsive-block-editor-addons-gallery--figure' => array(
 					'height'                 => 'auto',

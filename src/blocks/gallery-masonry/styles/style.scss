@@ -24,11 +24,9 @@
     vertical-align: bottom;
   }
 
-  // .rba-gallery-items {
-  //   display: grid;
-  //   grid-template-columns: repeat(3, 1fr);
-  //   gap: 10px;
-  // }
+  .rba-gallery-items {
+    width: 100%;
+  }
 
   .is-hidden-by-default {
     display: none !important;

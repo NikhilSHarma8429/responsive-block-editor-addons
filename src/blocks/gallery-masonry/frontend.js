@@ -2,15 +2,42 @@ document.addEventListener("DOMContentLoaded", () => {
   const HIDDEN = "is-hidden-by-default";
 
   document.querySelectorAll("[data-rba-gallery-block]").forEach((gallery) => {
+    const itemsWrapper = gallery.querySelector(".rba-gallery-items");
     const items = gallery.querySelectorAll(".responsive-block-editor-addons-gallery--item");
     const wrapper = gallery.querySelector(".gallery-filter-wrapper");
-    if (!wrapper || items.length === 0) return;
+    if (!itemsWrapper || items.length === 0) return;
 
-    const buttons = wrapper.querySelectorAll(".gallery-filter-button[data-category]:not(.rba-gf-toggle)");
-    if (buttons.length === 0) return;
+    const columnSize = parseInt(itemsWrapper.dataset.columnsize, 10) || 3;
 
+    function applyMasonry() {
+    
+      const colHeights = new Array(columnSize).fill(0);
+      const colWidth = 100 / columnSize;
+
+      items.forEach((item, index) => {
+        item.style.position = "absolute"; 
+        const minCol = index % columnSize;
+
+        const left = `${minCol * colWidth}%`;
+        const top = `${colHeights[minCol]}px`;
+
+        item.style.left = left;
+        item.style.top = top;
+
+        const itemHeight = item.offsetHeight;
+        colHeights[minCol] += itemHeight;
+      });
+
+      itemsWrapper.style.position = "relative";
+      itemsWrapper.style.height = `${Math.max(...colHeights)}px`;
+    }
+
+    // --- Filtering logic ---
+    const buttons = wrapper
+      ? wrapper.querySelectorAll(".gallery-filter-button[data-category]:not(.rba-gf-toggle)")
+      : [];
     const initiallyActive =
-      wrapper.querySelector(".gallery-filter-button.is-active[data-category]") || buttons[0];
+      wrapper && (wrapper.querySelector(".gallery-filter-button.is-active[data-category]") || buttons[0]);
 
     function matches(item, cat) {
       return cat === "All" || cat === "all" || item.dataset.category === cat;
@@ -24,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
           item.classList.add(HIDDEN);
         }
       });
+      applyMasonry(); // recalc layout after filter
     }
 
     function setActive(activeBtn) {
@@ -35,6 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (initiallyActive) {
       applyFilter(initiallyActive.dataset.category);
       setActive(initiallyActive);
+    } else {
+      applyMasonry();
     }
 
     // Handle clicks (tabs or dropdown items)
@@ -54,5 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
+
+    // Recalculate on resize
+    window.addEventListener("resize", applyMasonry);
   });
 });
