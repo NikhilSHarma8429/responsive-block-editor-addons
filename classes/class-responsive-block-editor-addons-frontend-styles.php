@@ -6664,8 +6664,8 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-left'    => self::get_css_value( $attr['blockLeftMarginMobile'], 'px' ),
 				),
 				' .rba-gallery-items' => array(
-					'column-count'          => (int) $attr['columnsize'],
-					'column-gap'            => self::get_css_value( $attr['gutterMobile'], 'px' ),
+					'column-count'   => (int) $attr['columnsize'],
+					'column-gap'     => self::get_css_value( $attr['gutterMobile'], 'px' ),
 					'padding-top'    => self::get_css_value( $attr['blockTopPaddingMobile'], 'px' ),
 					'padding-right'  => self::get_css_value( $attr['blockRightPaddingMobile'], 'px' ),
 					'padding-bottom' => self::get_css_value( $attr['blockBottomPaddingMobile'], 'px' ),
@@ -6682,8 +6682,11 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'-webkit-column-break-inside' => 'avoid',
 					'page-break-inside'      => 'avoid',
 					'margin'                 => '0 0 ' . self::get_css_value( $attr['gutterMobile'], 'px' ) . ' 0',
+					'width' 				 => 'calc((100% / ' . $attr['columnsize'] . ') - ' . ( $attr['gutterMobile'] === 0 ? '0px' : self::get_css_value( $attr['gutterMobile'], 'px' ) ) . ')',
 				),
-
+				' .responsive-block-editor-addons-gallery--figure' => array(
+					'margin-bottom'			 => self::get_css_value( $attr['gutterMobile'], 'px' )
+				),
 				' .gallery-filter-wrapper' => array(
 					'margin-bottom'  => ( $v = ( isset( $attr['filterTabBottomSpacingMobile'] ) ? self::get_css_value( $attr['filterTabBottomSpacingMobile'], 'px' ) : ( isset( $attr['filterTabBottomSpacing'] ) ? self::get_css_value( $attr['filterTabBottomSpacing'], 'px' ) : '20px' ) ) ) ? $v . ' !important' : '',
 					'text-align'     => isset( $attr['filterTabAlignmentMobile'] ) ? $attr['filterTabAlignmentMobile'] : ( isset( $attr['filterTabAlignment'] ) ? $attr['filterTabAlignment'] : 'left' ),
@@ -6759,8 +6762,11 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'-webkit-column-break-inside' => 'avoid',
 					'page-break-inside'      => 'avoid',
 					'margin'                 => '0 0 ' . self::get_css_value( $attr['gutterTablet'], 'px' ) . ' 0',
+					'width' 				 => 'calc((100% / ' . $attr['columnsize'] . ') - ' . ( $attr['gutterTablet'] === 0 ? '0px' : self::get_css_value( $attr['gutterTablet'], 'px' ) ) . ')',	
 				),
-
+				' .responsive-block-editor-addons-gallery--figure' => array(
+					'margin-bottom'			 => self::get_css_value( $attr['gutterTablet'], 'px' )
+				),
 				' .gallery-filter-wrapper' => array(
 					'margin-bottom' => '' !== ( $v = ( isset( $attr['filterTabBottomSpacingTablet'] ) ? self::get_css_value( $attr['filterTabBottomSpacingTablet'], 'px' ) : ( isset( $attr['filterTabBottomSpacing'] ) ? self::get_css_value( $attr['filterTabBottomSpacing'], 'px' ) : '20px' ) ) ) ? $v . ' !important' : '',
 					'text-align'     => isset( $attr['filterTabAlignmentTablet'] ) ? $attr['filterTabAlignmentTablet'] : ( isset( $attr['filterTabAlignment'] ) ? $attr['filterTabAlignment'] : 'left' ),
