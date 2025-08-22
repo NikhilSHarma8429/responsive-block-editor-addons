@@ -10,27 +10,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const columnSize = parseInt(itemsWrapper.dataset.columnsize, 10) || 3;
 
     function applyMasonry() {
-    
       const colHeights = new Array(columnSize).fill(0);
       const colWidth = 100 / columnSize;
 
-      items.forEach((item, index) => {
-        item.style.position = "absolute"; 
-        const minCol = index % columnSize;
+      const visibleItems = Array.from(items).filter(item => !item.classList.contains(HIDDEN));
 
-        const left = `${minCol * colWidth}%`;
-        const top = `${colHeights[minCol]}px`;
+      visibleItems.forEach((item, index) => {
+        item.style.position = "absolute"; 
+        const col = index % columnSize;
+
+        const left = `${col * colWidth}%`;
+        const top = `${colHeights[col]}px`;
 
         item.style.left = left;
         item.style.top = top;
 
         const itemHeight = item.offsetHeight;
-        colHeights[minCol] += itemHeight;
+        colHeights[col] += itemHeight;
       });
 
       itemsWrapper.style.position = "relative";
       itemsWrapper.style.height = `${Math.max(...colHeights)}px`;
     }
+
 
     // --- Filtering logic ---
     const buttons = wrapper

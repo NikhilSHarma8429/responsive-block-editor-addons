@@ -50,7 +50,7 @@ const save = ({ attributes, className }) => {
         .map((image) => image.rba_category || "uncategorized")
         .filter((cat) => cat && cat !== "uncategorized")
     )
-  );
+  ).sort(); // Sort alphabetically for consistent order
 
   // Build the complete HTML structure
   const shouldShowFilters = enableCategoryFilter && categories.length > 0;
