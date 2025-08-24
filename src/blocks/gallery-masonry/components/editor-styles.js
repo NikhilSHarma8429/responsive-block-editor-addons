@@ -14,9 +14,9 @@ const mapAlign = (a) => {
 function EditorStyles(props) {
   const {
     block_id,
-    gutter,
-    gutterMobile,
-    gutterTablet,
+    // gutter,
+    // gutterMobile,
+    // gutterTablet,
     columnsize,
     radius,
     blockTopMargin,
@@ -115,13 +115,13 @@ function EditorStyles(props) {
     " .rba-gallery-items": {
       'display': 'grid',
       'grid-template-columns': `repeat(${columnsize || 3}, 1fr)`,
-      'gap': generateCSSUnit(gutter, "px"),
+      // 'gap': generateCSSUnit(gutter, "px"),
     },
     " .responsive-block-editor-addons-gallery--figure img": {
       'border-radius': radius && radius > 0 ? generateCSSUnit(radius, "px") : undefined,
     },
     " .responsive-block-editor-addons-gallery--figure": {
-      'margin-bottom': generateCSSUnit(gutter, "px"),
+      // 'margin-bottom': generateCSSUnit(gutter, "px"),
     },
     " .rba-filter-tabs, .gallery-filter-wrapper, .category-filters": {
       'font-family': filterTabTypographyFontFamily && filterTabTypographyFontFamily !== "Default" ? filterTabTypographyFontFamily : undefined,
@@ -180,10 +180,10 @@ function EditorStyles(props) {
       'margin-left': generateCSSUnit(blockLeftMarginMobile, "px"),
     },
     " .rba-gallery-items": {
-      'gap': generateCSSUnit(gutterMobile || gutter, "px"),
+      // 'gap': generateCSSUnit(gutterMobile || gutter, "px"),
     },
     " .responsive-block-editor-addons-gallery--figure": {
-      'margin-bottom': generateCSSUnit(gutterMobile || gutter, "px"),
+      // 'margin-bottom': generateCSSUnit(gutterMobile || gutter, "px"),
     },
     " .rba-filter-tabs, .gallery-filter-wrapper, .category-filters": {
       'font-size': filterTabTypographyFontSizeMobile ? generateCSSUnit(filterTabTypographyFontSizeMobile, 'px') : undefined,
@@ -219,10 +219,10 @@ function EditorStyles(props) {
       'margin-left': generateCSSUnit(blockLeftMarginTablet, "px"),
     },
     " .rba-gallery-items": {
-      'gap': generateCSSUnit(gutterTablet || gutter, "px"),
+      // 'gap': generateCSSUnit(gutterTablet || gutter, "px"),
     },
     " .responsive-block-editor-addons-gallery--figure": {
-      'margin-bottom': generateCSSUnit(gutterTablet || gutter, "px"),
+      // 'margin-bottom': generateCSSUnit(gutterTablet || gutter, "px"),
     },
     " .rba-filter-tabs, .gallery-filter-wrapper, .category-filters": {
       'font-size': filterTabTypographyFontSizeTablet ? generateCSSUnit(filterTabTypographyFontSizeTablet, 'px') : undefined,

@@ -247,6 +247,10 @@ class GalleryMasonryEdit extends Component {
     };
   }
 
+  resetSelectedCategory() {
+    this.setState({ selectedCategory: "All" });
+  }
+
   setImageAttributes(index, attributes) {
     const { images } = this.props.attributes;
     if (!images[index]) return;
@@ -365,7 +369,7 @@ class GalleryMasonryEdit extends Component {
           {...this.props}
           label={__("Image", "responsive-block-editor-addons")}
           icon={icon}
-          gutter={gutter}
+          // gutter={gutter}
         />
       </Fragment>
     );
@@ -417,7 +421,7 @@ class GalleryMasonryEdit extends Component {
           {EditorStyles(this.props)}
         </style>
         {filterTabTypographyFontFamily && filterTabTypographyFontFamily !== "Default" && loadGoogleFont(filterTabTypographyFontFamily)}
-        {isSelected && <Inspector {...this.props} />}
+        {isSelected && <Inspector {...this.props} onResetCategory={this.resetSelectedCategory.bind(this)} />}
         {noticeUI}
         <div 
           className={outerClasses}
@@ -436,24 +440,54 @@ class GalleryMasonryEdit extends Component {
               data-align-tablet={tabletAlignment}
               data-align-mobile={mobileAlignment}
             >
-              {categories.map((cat) => {
-                const isActive = this.state.selectedCategory === cat;
-                return (
-                  <button
-                    key={cat}
-                    className={[
-                      "gallery-filter-button",
-                      isActive ? "is-active" : "",
-                    ].join(" ")}
-                    data-cat={cat}
-                    onClick={() => this.setState({ selectedCategory: cat })}
-                    type="button"
-                    aria-pressed={isActive}
-                  >
-                    {cat === "All" ? allTabLabel : cat}
-                  </button>
-                );
-              })}
+              {/* Desktop tabs */}
+              <div className="rba-gf-tabs">
+                {categories.map((cat) => {
+                  const isActive = this.state.selectedCategory === cat;
+                  return (
+                    <button
+                      key={cat}
+                      className={[
+                        "gallery-filter-button",
+                        isActive ? "is-active" : "",
+                      ].join(" ")}
+                      data-cat={cat}
+                      onClick={() => this.setState({ selectedCategory: cat })}
+                      type="button"
+                      aria-pressed={isActive}
+                    >
+                      {cat === "All" ? allTabLabel : cat}
+                    </button>
+                  );
+                })}
+              </div>
+              
+              {/* Mobile dropdown */}
+              {enableResponsiveSupport && (
+                <details className="rba-gf-dropdown">
+                  <summary className="gallery-filter-button rba-gf-toggle">
+                    {this.state.selectedCategory === "All" ? allTabLabel : this.state.selectedCategory}
+                  </summary>
+                  <ul className="rba-gf-menu">
+                    {categories.map((cat) => (
+                      <li key={cat}>
+                        <button
+                          className={[
+                            "gallery-filter-button",
+                            "dropdown-item",
+                            this.state.selectedCategory === cat ? "is-active" : "",
+                          ].join(" ")}
+                          data-cat={cat}
+                          onClick={() => this.setState({ selectedCategory: cat })}
+                          type="button"
+                        >
+                          {cat === "All" ? allTabLabel : cat}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
             </div>
           )}
 
