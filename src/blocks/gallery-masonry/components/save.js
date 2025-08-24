@@ -59,7 +59,7 @@ const save = ({ attributes, className }) => {
   const defaultActiveCategory = setDefaultCategory && defaultCategory ? defaultCategory : "All";
 
   return (
-    <div className={outerClasses} data-rba-gallery-block>
+    <div className={`${outerClasses} ${lightbox ? 'has-lightbox' : ''}`} data-rba-gallery-block>
       {shouldShowFilters && (
         <div className={`gallery-filter-wrapper ${enableResponsiveSupport ? 'has-responsive-support' : ''}`}>
           {/* Desktop tabs */}
@@ -164,7 +164,7 @@ const save = ({ attributes, className }) => {
               className="responsive-block-editor-addons-gallery--item" 
               data-category={imageCategory}
             >
-              <figure className={`responsive-block-editor-addons-gallery--figure ${lightbox ? 'has-lightbox' : ''}`}>
+              <figure className="responsive-block-editor-addons-gallery--figure">
                 {imageContent}
                 {captions && image.caption && image.caption.length > 0 && (
                   <RichText.Content

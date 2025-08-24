@@ -69,10 +69,10 @@
     arrowLeft.setAttribute("class", "arrow-left");
 
     const images = document.querySelectorAll(
-      `.has-lightbox.lightbox-${lightboxIndex} > :not(.carousel-nav) figure img, figure.has-lightbox.lightbox-${lightboxIndex} > img`
+      `.has-lightbox.lightbox-${lightboxIndex} figure img`
     );
     const captions = document.querySelectorAll(
-      `.has-lightbox.lightbox-${lightboxIndex} > :not(.carousel-nav) figure figcaption`
+      `.has-lightbox.lightbox-${lightboxIndex} figure figcaption`
     );
     let index;
 
