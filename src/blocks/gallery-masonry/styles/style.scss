@@ -138,6 +138,13 @@
       
       // Mobile - hide tabs, show dropdown
       @media (max-width: 767px) {
+        .gallery-filter-button.rba-gf-toggle{
+          margin-bottom: 0;
+        }
+        .gallery-filter-button.dropdown-item{
+          width: 70vw;
+          margin-bottom: 0;
+        }
         .rba-gf-tabs {
           display: none;
         }
@@ -266,17 +273,17 @@
       }
     }
   
-    &.filter-tab-alignment-left {
-      text-align: left !important;
-    }
+    // &.filter-tab-alignment-left {
+    //   text-align: left !important;
+    // }
     
-    &.filter-tab-alignment-center {
-      text-align: center !important;
-    }
+    // &.filter-tab-alignment-center {
+    //   text-align: center !important;
+    // }
     
-    &.filter-tab-alignment-right {
-      text-align: right !important;
-    }
+    // &.filter-tab-alignment-right {
+    //   text-align: right !important;
+    // }
   }
   
   // Responsive alignment for tablet

@@ -160,10 +160,10 @@ function EditorStyles(props) {
     " .rba-filter-tabs .gallery-filter-button.is-active, .rba-filter-tabs .gallery-filter-button:hover, .gallery-filter-wrapper button:hover, .category-filters button:hover": {
       'background-color': filterTabHoverBackgroundColor || '#0073aa',
       'color': filterTabHoverTextColor || '#fff',
-      'border-top': filterTabBorderStyle !== "none" ? `${filterTabTopBorderwidth !== undefined && filterTabTopBorderwidth !== '' ? filterTabTopBorderwidth : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
-      'border-right': filterTabBorderStyle !== "none" ? `${filterTabRightBorderwidth !== undefined && filterTabRightBorderwidth !== '' ? filterTabRightBorderwidth : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
-      'border-bottom': filterTabBorderStyle !== "none" ? `${filterTabBottomBorderwidth !== undefined && filterTabBottomBorderwidth !== '' ? filterTabBottomBorderwidth : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
-      'border-left': filterTabBorderStyle !== "none" ? `${filterTabLeftBorderwidth !== undefined && filterTabLeftBorderwidth !== '' ? filterTabLeftBorderwidth : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
+      // 'border-top': filterTabBorderStyle !== "none" ? `${filterTabTopBorderwidth !== undefined && filterTabTopBorderwidth !== '' ? filterTabTopBorderwidth : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
+      // 'border-right': filterTabBorderStyle !== "none" ? `${filterTabRightBorderwidth !== undefined && filterTabRightBorderwidth !== '' ? filterTabRightBorderwidth : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
+      // 'border-bottom': filterTabBorderStyle !== "none" ? `${filterTabBottomBorderwidth !== undefined && filterTabBottomBorderwidth !== '' ? filterTabBottomBorderwidth : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
+      // 'border-left': filterTabBorderStyle !== "none" ? `${filterTabLeftBorderwidth !== undefined && filterTabLeftBorderwidth !== '' ? filterTabLeftBorderwidth : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
     }
   };
 
@@ -199,10 +199,10 @@ function EditorStyles(props) {
       'margin-right': filterTabSpacingBetweenMobile !== undefined && filterTabSpacingBetweenMobile !== '' ? generateCSSUnit(filterTabSpacingBetweenMobile, 'px') : undefined,
     },
     " .rba-filter-tabs .gallery-filter-button.is-active, .rba-filter-tabs .gallery-filter-button:hover, .gallery-filter-wrapper button:hover, .category-filters button:hover": {
-      'border-top': filterTabBorderStyle !== "none" ? `${filterTabTopBorderwidthMobile !== undefined && filterTabTopBorderwidthMobile !== '' ? filterTabTopBorderwidthMobile : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
-      'border-right': filterTabBorderStyle !== "none" ? `${filterTabRightBorderwidthMobile !== undefined && filterTabRightBorderwidthMobile !== '' ? filterTabRightBorderwidthMobile : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
-      'border-bottom': filterTabBorderStyle !== "none" ? `${filterTabBottomBorderwidthMobile !== undefined && filterTabBottomBorderwidthMobile !== '' ? filterTabBottomBorderwidthMobile : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
-      'border-left': filterTabBorderStyle !== "none" ? `${filterTabLeftBorderwidthMobile !== undefined && filterTabLeftBorderwidthMobile !== '' ? filterTabLeftBorderwidthMobile : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
+      // 'border-top': filterTabBorderStyle !== "none" ? `${filterTabTopBorderwidthMobile !== undefined && filterTabTopBorderwidthMobile !== '' ? filterTabTopBorderwidthMobile : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
+      // 'border-right': filterTabBorderStyle !== "none" ? `${filterTabRightBorderwidthMobile !== undefined && filterTabRightBorderwidthMobile !== '' ? filterTabRightBorderwidthMobile : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
+      // 'border-bottom': filterTabBorderStyle !== "none" ? `${filterTabBottomBorderwidthMobile !== undefined && filterTabBottomBorderwidthMobile !== '' ? filterTabBottomBorderwidthMobile : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
+      // 'border-left': filterTabBorderStyle !== "none" ? `${filterTabLeftBorderwidthMobile !== undefined && filterTabLeftBorderwidthMobile !== '' ? filterTabLeftBorderwidthMobile : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
     }
   };
 
@@ -238,10 +238,10 @@ function EditorStyles(props) {
       'margin-right': filterTabSpacingBetweenTablet !== undefined && filterTabSpacingBetweenTablet !== '' ? generateCSSUnit(filterTabSpacingBetweenTablet, 'px') : undefined,
     },
     " .rba-filter-tabs .gallery-filter-button.is-active, .rba-filter-tabs .gallery-filter-button:hover, .gallery-filter-wrapper button:hover, .category-filters button:hover": {
-      'border-top': filterTabBorderStyle !== "none" ? `${filterTabTopBorderwidthTablet !== undefined && filterTabTopBorderwidthTablet !== '' ? filterTabTopBorderwidthTablet : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
-      'border-right': filterTabBorderStyle !== "none" ? `${filterTabRightBorderwidthTablet !== undefined && filterTabRightBorderwidthTablet !== '' ? filterTabRightBorderwidthTablet : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
-      'border-bottom': filterTabBorderStyle !== "none" ? `${filterTabBottomBorderwidthTablet !== undefined && filterTabBottomBorderwidthTablet !== '' ? filterTabBottomBorderwidthTablet : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
-      'border-left': filterTabBorderStyle !== "none" ? `${filterTabLeftBorderwidthTablet !== undefined && filterTabLeftBorderwidthTablet !== '' ? filterTabLeftBorderwidthTablet : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
+      // 'border-top': filterTabBorderStyle !== "none" ? `${filterTabTopBorderwidthTablet !== undefined && filterTabTopBorderwidthTablet !== '' ? filterTabTopBorderwidthTablet : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
+      // 'border-right': filterTabBorderStyle !== "none" ? `${filterTabRightBorderwidthTablet !== undefined && filterTabRightBorderwidthTablet !== '' ? filterTabRightBorderwidthTablet : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
+      // 'border-bottom': filterTabBorderStyle !== "none" ? `${filterTabBottomBorderwidthTablet !== undefined && filterTabBottomBorderwidthTablet !== '' ? filterTabBottomBorderwidthTablet : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
+      // 'border-left': filterTabBorderStyle !== "none" ? `${filterTabLeftBorderwidthTablet !== undefined && filterTabLeftBorderwidthTablet !== '' ? filterTabLeftBorderwidthTablet : 1}px ${filterTabBorderStyle || "solid"} ${filterTabBorderColor || "#ccc"}` : "none",
     }
   };
 
