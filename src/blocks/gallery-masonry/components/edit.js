@@ -279,7 +279,15 @@ class GalleryMasonryEdit extends Component {
   }
 
   render() {
-    const { attributes, className, isSelected, noticeUI } = this.props;
+    const {
+      attributes,
+      className,
+      editorSidebarOpened,
+      isSelected,
+      noticeUI,
+      pluginSidebarOpened,
+      publishSidebarOpened,
+    } = this.props;
     const {
       align,
       captions,
@@ -351,13 +359,23 @@ class GalleryMasonryEdit extends Component {
 
     const hasImages = !!images.length;
 
-    const innerClasses = classnames(...GalleryClasses(attributes), {
-      "has-gutter": gutter > 0,
-      "has-lightbox": lightbox,
-    });
+    const sidebarIsOpened =
+      editorSidebarOpened || pluginSidebarOpened || publishSidebarOpened;
+      
+    const innerClasses = classnames(
+      ...GalleryClasses(attributes),
+      sidebarIsOpened,
+      {
+        [`align${align}`]: align,
+        "has-gutter": gutter > 0,
+        "has-lightbox": lightbox,
+        [`link-type-${linkTo}`]: linkTo && !lightbox,
+      }
+    );
     
     const masonryClasses = classnames({
       [`has-gutter-${gutter}`]: gutter > 0,
+      [`has-gutter-null`]: gutter === 0,
       [`has-gutter-mobile-${gutterMobile}`]: gutterMobile > 0,
       [`has-gutter-tablet-${gutterTablet}`]: gutterTablet > 0,
     });
@@ -369,7 +387,7 @@ class GalleryMasonryEdit extends Component {
           {...this.props}
           label={__("Image", "responsive-block-editor-addons")}
           icon={icon}
-          // gutter={gutter}
+          gutter={gutter}
         />
       </Fragment>
     );
