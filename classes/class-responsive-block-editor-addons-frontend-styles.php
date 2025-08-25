@@ -6583,14 +6583,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				' .rba-gallery-items' => array(
 					'column-count'          => (int) $attr['columnsize'],
 					'column-gap'            => self::get_css_value( $attr['gutter'], 'px' ),
-					// 'padding-top'           => self::get_css_value( $attr['blockTopPadding'], 'px' ),
-					// 'padding-right'         => self::get_css_value( $attr['blockRightPadding'], 'px' ),
-					// 'padding-bottom'        => self::get_css_value( $attr['blockBottomPadding'], 'px' ),
-					// 'padding-left'          => self::get_css_value( $attr['blockLeftPadding'], 'px' ),
-					// 'margin-top'            => self::get_css_value( $attr['blockTopMargin'], 'px' ),
-					// 'margin-right'          => self::get_css_value( $attr['blockRightMargin'], 'px' ),
-					// 'margin-bottom'         => self::get_css_value( $attr['blockBottomMargin'], 'px' ),
-					// 'margin-left'           => self::get_css_value( $attr['blockLeftMargin'], 'px' ),
 					'position'				=> 'relative',
 				),
 				' .responsive-block-editor-addons-gallery--item' => array(
@@ -6654,24 +6646,12 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				' .gallery-filter-wrapper .gallery-filter-button:hover, .gallery-filter-wrapper .gallery-filter-button.is-active' => array(
 					'background-color' => ( isset( $attr['filterTabHoverBackgroundColor'] ) ? $attr['filterTabHoverBackgroundColor'] : '#0073aa' ) . ' !important',
    					'color'            => ( isset( $attr['filterTabHoverTextColor'] ) ? $attr['filterTabHoverTextColor'] : '#ffffff' ) . ' !important',
-					// 'border-top'       => ( isset( $attr['filterTabBorderStyle'] ) && 'none' !== $attr['filterTabBorderStyle'] ) ? self::get_css_value( ( isset( $attr['filterTabTopBorderwidth'] ) && $attr['filterTabTopBorderwidth'] !== '' ) ? $attr['filterTabTopBorderwidth'] : 1, 'px' ) . ' ' . $attr['filterTabBorderStyle'] . ' ' . ( isset( $attr['filterTabBorderColor'] ) ? $attr['filterTabBorderColor'] : '#000000' ) : 'none',
-					// 'border-right'     => ( isset( $attr['filterTabBorderStyle'] ) && 'none' !== $attr['filterTabBorderStyle'] ) ? self::get_css_value( ( isset( $attr['filterTabRightBorderwidth'] ) && $attr['filterTabRightBorderwidth'] !== '' ) ? $attr['filterTabRightBorderwidth'] : 1, 'px' ) . ' ' . $attr['filterTabBorderStyle'] . ' ' . ( isset( $attr['filterTabBorderColor'] ) ? $attr['filterTabBorderColor'] : '#000000' ) : 'none',
-					// 'border-bottom'    => ( isset( $attr['filterTabBorderStyle'] ) && 'none' !== $attr['filterTabBorderStyle'] ) ? self::get_css_value( ( isset( $attr['filterTabBottomBorderwidth'] ) && $attr['filterTabBottomBorderwidth'] !== '' ) ? $attr['filterTabBottomBorderwidth'] : 1, 'px' ) . ' ' . $attr['filterTabBorderStyle'] . ' ' . ( isset( $attr['filterTabBorderColor'] ) ? $attr['filterTabBorderColor'] : '#000000' ) : 'none',
-					// 'border-left'      => ( isset( $attr['filterTabBorderStyle'] ) && 'none' !== $attr['filterTabBorderStyle'] ) ? self::get_css_value( ( isset( $attr['filterTabLeftBorderwidth'] ) && $attr['filterTabLeftBorderwidth'] !== '' ) ? $attr['filterTabLeftBorderwidth'] : 1, 'px' ) . ' ' . $attr['filterTabBorderStyle'] . ' ' . ( isset( $attr['filterTabBorderColor'] ) ? $attr['filterTabBorderColor'] : '#000000' ) : 'none',
 				),
 			);
 			$mobile_selectors = array(
 				' ' => array(
 					'display'    => true === $attr['hideWidgetMobile'] ? 'none' : 'block',
 					'z-index'    => $attr['z_indexMobile'],
-					// 'padding-top'    => self::get_css_value( $attr['blockTopPaddingMobile'], 'px' ),
-					// 'padding-right'  => self::get_css_value( $attr['blockRightPaddingMobile'], 'px' ),
-					// 'padding-bottom' => self::get_css_value( $attr['blockBottomPaddingMobile'], 'px' ),
-					// 'padding-left'   => self::get_css_value( $attr['blockLeftPaddingMobile'], 'px' ),
-					// 'margin-top'     => self::get_css_value( $attr['blockTopMarginMobile'], 'px' ),
-					// 'margin-right'   => self::get_css_value( $attr['blockRightMarginMobile'], 'px' ),
-					// 'margin-bottom'  => self::get_css_value( $attr['blockBottomMarginMobile'], 'px' ),
-					// 'margin-left'    => self::get_css_value( $attr['blockLeftMarginMobile'], 'px' ),
 				),
 				'.wp-block-responsive-block-editor-addons-gallery-masonry.block-' . $attr['block_id'] => array(
 					'padding-top'           => self::get_css_value( $attr['blockTopPaddingMobile'], 'px' ),
@@ -6686,14 +6666,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				' .rba-gallery-items' => array(
 					'column-count'   => (int) $attr['columnsize'],
 					'column-gap'     => self::get_css_value( $attr['gutterMobile'], 'px' ),
-					// 'padding-top'    => self::get_css_value( $attr['blockTopPaddingMobile'], 'px' ),
-					// 'padding-right'  => self::get_css_value( $attr['blockRightPaddingMobile'], 'px' ),
-					// 'padding-bottom' => self::get_css_value( $attr['blockBottomPaddingMobile'], 'px' ),
-					// 'padding-left'   => self::get_css_value( $attr['blockLeftPaddingMobile'], 'px' ),
-					// 'margin-top'     => self::get_css_value( $attr['blockTopMarginMobile'], 'px' ),
-					// 'margin-right'   => self::get_css_value( $attr['blockRightMarginMobile'], 'px' ),
-					// 'margin-bottom'  => self::get_css_value( $attr['blockBottomMarginMobile'], 'px' ),
-					// 'margin-left'    => self::get_css_value( $attr['blockLeftMarginMobile'], 'px' ),
 				),
 				' .responsive-block-editor-addons-gallery--item' => array(
 					'display'                => 'block',
@@ -6709,7 +6681,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 				' .gallery-filter-wrapper' => array(
 					'margin-bottom'  => ( $v = ( isset( $attr['filterTabBottomSpacingMobile'] ) ? self::get_css_value( $attr['filterTabBottomSpacingMobile'], 'px' ) : ( isset( $attr['filterTabBottomSpacing'] ) ? self::get_css_value( $attr['filterTabBottomSpacing'], 'px' ) : '20px' ) ) ) ? $v . ' !important' : '',
-					'text-align'     => isset( $attr['filterTabAlignmentMobile'] ) ? $attr['filterTabAlignmentMobile'] : ( isset( $attr['filterTabAlignment'] ) ? $attr['filterTabAlignment'] : 'left' ),
+					'text-align' => $attr['filterTabAlignmentMobile'] ?? 'left',
 					'font-family'    => isset( $attr['filterTabTypographyFontFamily'] ) && 'Default' !== $attr['filterTabTypographyFontFamily'] ? $attr['filterTabTypographyFontFamily'] : '',
 					'font-size'      => self::get_css_value( isset( $attr['filterTabTypographyFontSizeMobile'] ) ? $attr['filterTabTypographyFontSizeMobile'] : ( isset( $attr['filterTabTypographyFontSize'] ) ? $attr['filterTabTypographyFontSize'] : '' ), 'px' ) . ' !important',
 					'font-weight'    => ( isset( $attr['filterTabTypographyFontWeight'] ) && '' !== $attr['filterTabTypographyFontWeight'] ) ? $attr['filterTabTypographyFontWeight'] . ' !important' : '',
@@ -6743,10 +6715,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				' .gallery-filter-wrapper .gallery-filter-button:hover, .gallery-filter-wrapper .gallery-filter-button.is-active' => array(
 					'background-color' => ( isset( $attr['filterTabHoverBackgroundColor'] ) ? $attr['filterTabHoverBackgroundColor'] : '#0073aa' ) . ' !important',
 					'color'            => ( isset( $attr['filterTabHoverTextColor'] ) ? $attr['filterTabHoverTextColor'] : '#ffffff' ) . ' !important',
-					// 'border-top'       => ( isset( $attr['filterTabBorderStyle'] ) && 'none' !== $attr['filterTabBorderStyle'] ) ? self::get_css_value( ( isset( $attr['filterTabTopBorderwidthMobile'] ) && $attr['filterTabTopBorderwidthMobile'] !== '' ) ? $attr['filterTabTopBorderwidthMobile'] : 1, 'px' ) . ' ' . $attr['filterTabBorderStyle'] . ' ' . ( isset( $attr['filterTabBorderColor'] ) ? $attr['filterTabBorderColor'] : '#000000' ) : 'none',
-					// 'border-right'     => ( isset( $attr['filterTabBorderStyle'] ) && 'none' !== $attr['filterTabBorderStyle'] ) ? self::get_css_value( ( isset( $attr['filterTabRightBorderwidthMobile'] ) && $attr['filterTabRightBorderwidthMobile'] !== '' ) ? $attr['filterTabRightBorderwidthMobile'] : 1, 'px' ) . ' ' . $attr['filterTabBorderStyle'] . ' ' . ( isset( $attr['filterTabBorderColor'] ) ? $attr['filterTabBorderColor'] : '#000000' ) : 'none',
-					// 'border-bottom'    => ( isset( $attr['filterTabBorderStyle'] ) && 'none' !== $attr['filterTabBorderStyle'] ) ? self::get_css_value( ( isset( $attr['filterTabBottomBorderwidthMobile'] ) && $attr['filterTabBottomBorderwidthMobile'] !== '' ) ? $attr['filterTabBottomBorderwidthMobile'] : 1, 'px' ) . ' ' . $attr['filterTabBorderStyle'] . ' ' . ( isset( $attr['filterTabBorderColor'] ) ? $attr['filterTabBorderColor'] : '#000000' ) : 'none',
-					// 'border-left'      => ( isset( $attr['filterTabBorderStyle'] ) && 'none' !== $attr['filterTabBorderStyle'] ) ? self::get_css_value( ( isset( $attr['filterTabLeftBorderwidthMobile'] ) && $attr['filterTabLeftBorderwidthMobile'] !== '' ) ? $attr['filterTabLeftBorderwidthMobile'] : 1, 'px' ) . ' ' . $attr['filterTabBorderStyle'] . ' ' . ( isset( $attr['filterTabBorderColor'] ) ? $attr['filterTabBorderColor'] : '#000000' ) : 'none',
 				),
 			);
 
@@ -6754,14 +6722,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				' ' => array(
 					'display'    => true === $attr['hideWidgetTablet'] ? 'none' : 'block',
 					'z-index'    => $attr['z_indexTablet'],
-					// 'padding-top'    => self::get_css_value( $attr['blockTopPaddingTablet'], 'px' ),
-					// 'padding-right'  => self::get_css_value( $attr['blockRightPaddingTablet'], 'px' ),
-					// 'padding-bottom' => self::get_css_value( $attr['blockBottomPaddingTablet'], 'px' ),
-					// 'padding-left'   => self::get_css_value( $attr['blockLeftPaddingTablet'], 'px' ),
-					// 'margin-top'     => self::get_css_value( $attr['blockTopMarginTablet'], 'px' ),
-					// 'margin-right'   => self::get_css_value( $attr['blockRightMarginTablet'], 'px' ),
-					// 'margin-bottom'  => self::get_css_value( $attr['blockBottomMarginTablet'], 'px' ),
-					// 'margin-left'    => self::get_css_value( $attr['blockLeftMarginTablet'], 'px' ),
 				),
 				'.wp-block-responsive-block-editor-addons-gallery-masonry.block-' . $attr['block_id'] => array(
 					'padding-top'           => self::get_css_value( $attr['blockTopPaddingTablet'], 'px' ),
@@ -6776,14 +6736,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				' .rba-gallery-items' => array(
 					'column-count'          => (int) $attr['columnsize'],
 					'column-gap'            => self::get_css_value( $attr['gutterTablet'], 'px' ),
-					// 'padding-top'    => self::get_css_value( $attr['blockTopPaddingTablet'], 'px' ),
-					// 'padding-right'  => self::get_css_value( $attr['blockRightPaddingTablet'], 'px' ),
-					// 'padding-bottom' => self::get_css_value( $attr['blockBottomPaddingTablet'], 'px' ),
-					// 'padding-left'   => self::get_css_value( $attr['blockLeftPaddingTablet'], 'px' ),
-					// 'margin-top'     => self::get_css_value( $attr['blockTopMarginTablet'], 'px' ),
-					// 'margin-right'   => self::get_css_value( $attr['blockRightMarginTablet'], 'px' ),
-					// 'margin-bottom'  => self::get_css_value( $attr['blockBottomMarginTablet'], 'px' ),
-					// 'margin-left'    => self::get_css_value( $attr['blockLeftMarginTablet'], 'px' ),
 				),
 				' .responsive-block-editor-addons-gallery--item' => array(
 					'display'                => 'block',
@@ -6799,7 +6751,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 				' .gallery-filter-wrapper' => array(
 					'margin-bottom' => '' !== ( $v = ( isset( $attr['filterTabBottomSpacingTablet'] ) ? self::get_css_value( $attr['filterTabBottomSpacingTablet'], 'px' ) : ( isset( $attr['filterTabBottomSpacing'] ) ? self::get_css_value( $attr['filterTabBottomSpacing'], 'px' ) : '20px' ) ) ) ? $v . ' !important' : '',
-					'text-align'     => isset( $attr['filterTabAlignmentTablet'] ) ? $attr['filterTabAlignmentTablet'] : ( isset( $attr['filterTabAlignment'] ) ? $attr['filterTabAlignment'] : 'left' ),
+					'text-align' => $attr['filterTabAlignmentTablet'] ?? 'left',
 					'font-family'    => isset( $attr['filterTabTypographyFontFamily'] ) && 'Default' !== $attr['filterTabTypographyFontFamily'] ? $attr['filterTabTypographyFontFamily'] : '',
 					'font-size'      => self::get_css_value( isset( $attr['filterTabTypographyFontSizeTablet'] ) ? $attr['filterTabTypographyFontSizeTablet'] : ( isset( $attr['filterTabTypographyFontSize'] ) ? $attr['filterTabTypographyFontSize'] : '' ), 'px' ) . ' !important',
 					'font-weight'    => ( isset( $attr['filterTabTypographyFontWeight'] ) && '' !== $attr['filterTabTypographyFontWeight'] ) ? $attr['filterTabTypographyFontWeight'] . ' !important' : '',
@@ -6833,10 +6785,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				' .gallery-filter-wrapper .gallery-filter-button:hover, .gallery-filter-wrapper .gallery-filter-button.is-active' => array(
 					'background-color' => ( isset( $attr['filterTabHoverBackgroundColor'] ) ? $attr['filterTabHoverBackgroundColor'] : '#0073aa' ) . ' !important',
 					'color'            => ( isset( $attr['filterTabHoverTextColor'] ) ? $attr['filterTabHoverTextColor'] : '#ffffff' ) . ' !important',
-					// 'border-top'       => ( isset( $attr['filterTabBorderStyle'] ) && 'none' !== $attr['filterTabBorderStyle'] ) ? self::get_css_value( ( isset( $attr['filterTabTopBorderwidthTablet'] ) && $attr['filterTabTopBorderwidthTablet'] !== '' ) ? $attr['filterTabTopBorderwidthTablet'] : 1, 'px' ) . ' ' . $attr['filterTabBorderStyle'] . ' ' . ( isset( $attr['filterTabBorderColor'] ) ? $attr['filterTabBorderColor'] : '#000000' ) : 'none',
-					// 'border-right'     => ( isset( $attr['filterTabBorderStyle'] ) && 'none' !== $attr['filterTabBorderStyle'] ) ? self::get_css_value( ( isset( $attr['filterTabRightBorderwidthTablet'] ) && $attr['filterTabRightBorderwidthTablet'] !== '' ) ? $attr['filterTabRightBorderwidthTablet'] : 1, 'px' ) . ' ' . $attr['filterTabBorderStyle'] . ' ' . ( isset( $attr['filterTabBorderColor'] ) ? $attr['filterTabBorderColor'] : '#000000' ) : 'none',
-					// 'border-bottom'    => ( isset( $attr['filterTabBorderStyle'] ) && 'none' !== $attr['filterTabBorderStyle'] ) ? self::get_css_value( ( isset( $attr['filterTabBottomBorderwidthTablet'] ) && $attr['filterTabBottomBorderwidthTablet'] !== '' ) ? $attr['filterTabBottomBorderwidthTablet'] : 1, 'px' ) . ' ' . $attr['filterTabBorderStyle'] . ' ' . ( isset( $attr['filterTabBorderColor'] ) ? $attr['filterTabBorderColor'] : '#000000' ) : 'none',
-					// 'border-left'      => ( isset( $attr['filterTabBorderStyle'] ) && 'none' !== $attr['filterTabBorderStyle'] ) ? self::get_css_value( ( isset( $attr['filterTabLeftBorderwidthTablet'] ) && $attr['filterTabLeftBorderwidthTablet'] !== '' ) ? $attr['filterTabLeftBorderwidthTablet'] : 1, 'px' ) . ' ' . $attr['filterTabBorderStyle'] . ' ' . ( isset( $attr['filterTabBorderColor'] ) ? $attr['filterTabBorderColor'] : '#000000' ) : 'none',
 				),
 			);
 
