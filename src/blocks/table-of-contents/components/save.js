@@ -84,7 +84,7 @@ export default class Save extends Component {
           data-order-list-type={orderListType || 'unordered'}
           data-allowed-anchors={ JSON.stringify(allowedAnchors) }>
           <div className="responsive-block-editor-addons-toc__title-wrap">
-            <div class="responsive-block-editor-addons-toc__title">
+            <div className="responsive-block-editor-addons-toc__title">
               {headingTitle}
             </div>
               {icon_html}
