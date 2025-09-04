@@ -36,9 +36,16 @@ jQuery(function ($) {
       else $wrap.append($listWrap);
     }
 
-    // If links already exist (normal frontend), do NOT rebuild — just skip build for this wrap
+    // If a list already exists, OVERWRITE it (clear before rebuilding)
     var hasLinks = $listWrap.find("a[href^='#']").length > 0;
-    if (hasLinks) return; // (only exits this .each iteration; smooth-scroll binds later below)
+    if (hasLinks) {
+    // Remove any previously saved/generated list content
+    $listWrap
+        .find(".responsive-block-editor-addons-toc__list, .child-list")
+        .remove();
+    $listWrap.empty();
+    }
+
 
     // ---- Build list from the rendered article DOM (sidebar case) ----
     var $content = findContentRoot();
