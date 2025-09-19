@@ -189,6 +189,14 @@ const attributes = {
     type: "string",
     default: "Default",
   },
+  buttonSizeTablet: {
+    type: "string",
+    default: "Default",
+  },
+  buttonSizeMobile: {
+    type: "string",
+    default: "Default",
+  },
 };
 
 export default attributes;
