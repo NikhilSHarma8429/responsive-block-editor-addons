@@ -34,6 +34,7 @@ const {
 	ToggleControl,
 } = wp.components;
 
+
 /**
  * Create an Inspector Controls wrapper Component
  */
@@ -84,6 +85,7 @@ export default class Inspector extends Component {
 				z_index,
 				z_indexTablet,
 				z_indexMobile,
+				buttonSize
 			},
 			setAttributes,
 		} = this.props;
@@ -116,6 +118,74 @@ export default class Inspector extends Component {
 			paddingMobileBottom: 0,
 			paddingMobileLeft: 0,
 		}
+		// Button Size configurations
+		const buttonSizeConfigs = {
+			Default: {
+				blockTopPadding: 16,
+				blockRightPadding: 36,
+				blockBottomPadding: 16,
+				blockLeftPadding: 36,
+			},
+			Small: {
+				blockTopPadding: 5,
+				blockRightPadding: 10,
+				blockBottomPadding: 5,
+				blockLeftPadding: 10,
+			},
+			Medium: {
+				blockTopPadding: 12,
+				blockRightPadding: 24,
+				blockBottomPadding: 12,
+				blockLeftPadding: 24,
+			},
+			Large: {
+				blockTopPadding: 20,
+				blockRightPadding: 30,
+				blockBottomPadding: 20,
+				blockLeftPadding: 30,
+			},
+			"Extra Large": {
+				blockTopPadding: 30,
+				blockRightPadding: 65,
+				blockBottomPadding: 30,
+				blockLeftPadding: 65,
+			}
+		};
+
+		// Helper function to apply button size attributes to child blocks
+		const applyButtonSizeToChildren = (sizeName) => {
+			const config = buttonSizeConfigs[sizeName];
+			if (!config) return;
+
+			// Get all child blocks using wp.data
+			const { clientId } = this.props;
+			const { getBlocks } = wp.data.select('core/block-editor');
+			const { updateBlockAttributes } = wp.data.dispatch('core/block-editor');
+			
+			// Get child blocks
+			const childBlocks = getBlocks(clientId);
+			
+			// Update each child block's attributes
+			childBlocks.forEach(childBlock => {
+				if (childBlock.name === 'responsive-block-editor-addons/buttons-child') {
+					updateBlockAttributes(childBlock.clientId, {
+						buttonSize: sizeName,
+						blockTopPadding: config.blockTopPadding,
+						blockRightPadding: config.blockRightPadding,
+						blockBottomPadding: config.blockBottomPadding,
+						blockLeftPadding: config.blockLeftPadding,
+					});
+				}
+			});
+		};
+
+		const sizeOptions = [
+			{ label: __("Default", "responsive-block-editor-addons"), value: 'Default' },
+			{ label: __("Small", "responsive-block-editor-addons"), value: 'Small' },
+			{ label: __("Medium", "responsive-block-editor-addons"), value: 'Medium' },
+			{ label: __("Large", "responsive-block-editor-addons"), value: 'Large' },
+			{ label: __("Extra Large", "responsive-block-editor-addons"), value: 'Extra Large' },
+		];
 		return (
 			<InspectorControls key="inspector">
 				<InspectorTabs>
@@ -224,6 +294,16 @@ export default class Inspector extends Component {
 									return <div>{tabout}</div>;
 								}}
 							</TabPanel>
+							<hr className="responsive-block-editor-addons-editor__separator" />
+							<SelectControl
+								label={__("Button Size", "responsive-block-editor-addons")}
+								options={sizeOptions}
+								value={buttonSize}
+								onChange={(value) => {
+									setAttributes({ buttonSize: value });
+									applyButtonSizeToChildren(value);
+								}}
+							/>
 							<hr className="responsive-block-editor-addons-editor__separator" />
 							<RbeaTabRadioControl
 								label={__("Stack on", "responsive-block-editor-addons")}

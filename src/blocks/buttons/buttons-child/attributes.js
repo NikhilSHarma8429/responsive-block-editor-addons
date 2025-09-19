@@ -426,6 +426,14 @@ const attributes = {
     type: "string",
     default: "preset1",
   },
+  buttonSize: {
+    type: "string",
+    default: "Default",
+  },
+  noFollow: {
+    type: "boolean",
+    default: false,
+  },
 };
 
 export default attributes;

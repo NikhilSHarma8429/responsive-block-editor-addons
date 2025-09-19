@@ -185,6 +185,10 @@ const attributes = {
   z_indexMobile: {
     type: "number",
   },
+  buttonSize: {
+    type: "string",
+    default: "Default",
+  },
 };
 
 export default attributes;
