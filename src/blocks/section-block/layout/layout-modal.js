@@ -36,6 +36,10 @@ export function LayoutModal(props) {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [noSearchResult, setNoSearchResult] = useState(false);
+  const [favorites, setFavorites] = useState([]);
+  const [showFavorites, setShowFavorites] = useState(false);
+  const [hoveredTemplate, setHoveredTemplate] = useState(null);
+  const [hoveredHeader, setHoveredHeader] = useState(false);
 
   const debounce = (func, delay) => {
     let timeoutId;
@@ -79,7 +83,49 @@ export function LayoutModal(props) {
   }, [searchQuery, siteData, noSearchResult, currentTab]);
   useEffect(() => {
     isUserProCapableCheck();
+    loadFavorites();
   }, []);
+
+  // Load favorites from localStorage
+  const loadFavorites = () => {
+    const savedFavorites = localStorage.getItem('rbea_template_favorites');
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
+    }
+  };
+
+  // Save favorites to localStorage
+  const saveFavorites = (favoritesList) => {
+    localStorage.setItem('rbea_template_favorites', JSON.stringify(favoritesList));
+  };
+
+  // Toggle favorite status
+  const toggleFavorite = (site) => {
+    const isFavorite = favorites.some(fav => fav.id === site.id);
+    let newFavorites;
+    
+    if (isFavorite) {
+      newFavorites = favorites.filter(fav => fav.id !== site.id);
+    } else {
+      newFavorites = [...favorites, site];
+    }
+    
+    setFavorites(newFavorites);
+    saveFavorites(newFavorites);
+  };
+
+  // Check if a site is favorite
+  const isFavorite = (site) => {
+    return favorites.some(fav => fav.id === site.id);
+  };
+
+  // Toggle favorites view
+  const toggleFavoritesView = () => {
+    setShowFavorites(!showFavorites);
+    if (!showFavorites) {
+      setSearchQuery(""); // Clear search when showing favorites
+    }
+  };
   const {removeBlock} = useDispatch("core/block-editor");
   const isUserProCapableCheck = async () => {
     try {
@@ -161,10 +207,18 @@ export function LayoutModal(props) {
   const PagesTabContent = () => {
     // Content for the Pages tab
     const handleCardClick = (site) => {
-      setCurrentTab("pageinnertab");
+      setCurrentTab('pageinnertab');
       setSelectedSite(site);
       setRequiredPlugins(site.required_plugins);
     };
+
+    const handleFavoriteClick = (e, site) => {
+      e.stopPropagation(); // Prevent card click
+      toggleFavorite(site);
+    };
+
+    // Get data to display - either favorites or all sites
+    const displayData = showFavorites ? favorites : sitesData;
     return (
       <div
         style={{
@@ -184,10 +238,15 @@ export function LayoutModal(props) {
           onClose={handleCloseToast}
         />
         <div className="pages-tab-content">
-          {noSearchResult ? (
+          {showFavorites && favorites.length === 0 ? (
+            <div className="rbea-no-favorites">
+              <h3>No favorites yet</h3>
+              <p>Click the heart icon on any template to add it to your favorites.</p>
+            </div>
+          ) : noSearchResult ? (
             <Noresultfound />
           ) : (
-            sitesData?.map((site) => (
+            displayData?.map((site) => (
               <div
                 className="rba-popup-card-component"
                 key={site.id}
@@ -215,6 +274,30 @@ export function LayoutModal(props) {
                     Pro
                   </div>
                 )}
+                <button
+                  className={`rba-favorite-button ${isFavorite(site) ? 'favorited' : ''}`}
+                  onClick={(e) => handleFavoriteClick(e, site)}
+                  onMouseEnter={() => setHoveredTemplate(site.id)}
+                  onMouseLeave={() => setHoveredTemplate(null)}
+                >
+                  <svg
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6.245 2.50498C4.975 2.43748 3.70125 2.86248 2.76375 3.79998C0.887495 5.67998 1.08375 8.83498 3.09125 10.845L3.7325 11.4862L9.56 17.3187C9.67715 17.4355 9.83582 17.5011 10.0012 17.5011C10.1667 17.5011 10.3253 17.4355 10.4425 17.3187L16.2675 11.4862L16.9087 10.845C18.9162 8.83498 19.1112 5.67998 17.2337 3.80123C15.3575 1.92248 12.2087 2.12248 10.2025 4.13123L10 4.33373L9.79749 4.13123C8.79375 3.12498 7.51625 2.57248 6.245 2.50498Z"
+                      fill={isFavorite(site) ? "#B60808" : "#4B5563"}
+                    />
+                  </svg>
+                  {hoveredTemplate === site.id && (
+                    <div className="rba-custom-tooltip">
+                      {isFavorite(site) ? 'Remove from favourites' : 'Add to favourites'}
+                    </div>
+                  )}
+                </button>
                 <div className="card-content">
                   <div className="card-content-heading">
                     {site.title.rendered.replace(/&#8211;|Gutenberg/g, "")}
@@ -642,6 +725,30 @@ export function LayoutModal(props) {
                           fill="#E2E5E7"
                         />
                       </svg>
+                    </button>
+                    <button
+                      className={`rba-favorites-header-button ${showFavorites ? 'active' : ''}`}
+                      onClick={toggleFavoritesView}
+                      onMouseEnter={() => setHoveredHeader(true)}
+                      onMouseLeave={() => setHoveredHeader(false)}
+                    >
+                      <svg
+                        width="100%"
+                        height="100%"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M6.245 2.50498C4.975 2.43748 3.70125 2.86248 2.76375 3.79998C0.887495 5.67998 1.08375 8.83498 3.09125 10.845L3.7325 11.4862L9.56 17.3187C9.67715 17.4355 9.83582 17.5011 10.0012 17.5011C10.1667 17.5011 10.3253 17.4355 10.4425 17.3187L16.2675 11.4862L16.9087 10.845C18.9162 8.83498 19.1112 5.67998 17.2337 3.80123C15.3575 1.92248 12.2087 2.12248 10.2025 4.13123L10 4.33373L9.79749 4.13123C8.79375 3.12498 7.51625 2.57248 6.245 2.50498Z"
+                          fill={showFavorites ? "#B60808" : "#4B5563"}
+                        />
+                      </svg>
+                      {hoveredHeader && (
+                        <div className="rba-custom-tooltip">
+                          Favourites
+                        </div>
+                      )}
                     </button>
                   </div>
                 </div>
