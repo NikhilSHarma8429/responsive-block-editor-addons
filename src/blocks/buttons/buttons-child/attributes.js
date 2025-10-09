@@ -251,6 +251,14 @@ const attributes = {
     type: "boolean",
     default: false,
   },
+  inheritFromThemesaved: {
+    type: "boolean",
+    default: false,
+  },
+  inheritFromThemeLocalTimestamp: {
+    type: "string",
+    default: "",
+  },
   hoverEffect: {
     type: "string",
   },

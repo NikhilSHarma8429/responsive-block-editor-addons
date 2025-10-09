@@ -1661,6 +1661,10 @@ class Responsive_Block_Editor_Addons {
 
 		update_option( 'rbea_global_inherit_from_theme', $value );
 
+		// Record the time when the toggle was changed
+		$timestamp = current_datetime()->format( 'c' );
+		update_option( 'rbea_global_inherit_from_theme_last_changed', $timestamp, 'no' );
+
 		wp_send_json_success();
 	}
 
