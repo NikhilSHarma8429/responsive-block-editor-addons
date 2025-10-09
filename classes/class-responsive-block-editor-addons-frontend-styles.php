@@ -3989,7 +3989,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 						if (link) link.classList.add('wp-block-button__link');
 					}
 					else {
-						const inheritFromTheme = <?php echo wp_json_encode( $attr['inheritFromTheme'] ); ?>;
+						const inheritFromTheme = <?php echo wp_json_encode( $attr['inheritFromThemesaved'] ); ?>;
 						if(!inheritFromTheme){
 							var scope = document.querySelector('.responsive-block-editor-addons-buttons-child.block-<?php echo esc_js( $raw_id ); ?>');
 							if (!scope) return;
