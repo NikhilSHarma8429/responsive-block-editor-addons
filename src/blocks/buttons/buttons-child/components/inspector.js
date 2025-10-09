@@ -584,13 +584,12 @@ export default class Inspector extends Component {
 							<ToggleControl
 								label={__("Inherit from Theme", "responsive-block-editor-addons")}
 								checked={inheritFromTheme}
-								onChange={(value) => 
-									setAttributes(
-										{ 
-											inheritFromTheme: !inheritFromTheme,
-											inheritFromThemesaved: inheritFromTheme
-										})
-								}
+								onChange={(next) => {
+									setAttributes({
+										inheritFromTheme: next,
+										inheritFromThemesaved: next,
+									});
+								}}
 								__nextHasNoMarginBottom
 							/>
 							<ToggleControl

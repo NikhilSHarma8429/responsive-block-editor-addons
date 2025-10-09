@@ -186,10 +186,7 @@ export const initAutoBlockRecovery = () => {
 
 // Initialize Global Inherit From Theme functionality
 export const initGlobalInheritFromThemeSystem = () => {
-	// Check if global inherit from theme is enabled
-	const isGlobalInheritFromThemeEnabled = responsive_globals && responsive_globals.global_inherit_from_theme === '1';
-	
-	if (isGlobalInheritFromThemeEnabled && window._wpLoadBlockEditor) {
+	if (window._wpLoadBlockEditor) {
 		window._wpLoadBlockEditor.then(() => {
 			initGlobalInheritFromTheme();
 		});

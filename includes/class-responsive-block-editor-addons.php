@@ -717,6 +717,7 @@ class Responsive_Block_Editor_Addons {
 				'plugin_url'                         => plugin_dir_url( __DIR__ ),
 				'auto_block_recovery'                => get_option( 'rbea_auto_block_recovery', '1' ),
 				'global_inherit_from_theme'          => get_option( 'rbea_global_inherit_from_theme', '0' ),
+				'global_inherit_from_theme_last_changed' => get_option( 'rbea_global_inherit_from_theme_last_changed', '' ),
 				'blocks'                             => $blocks,
 				'is_animation_on'                    => $is_animation_toggled_on,
 				'is_display_conditions_on'           => $is_display_conditions_on,

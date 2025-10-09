@@ -3659,6 +3659,47 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			// Preserve the raw block id for scoped selectors in any injected JS/CSS below.
 			$raw_id = $id;
 
+			// Check if should inherit from theme (global OR individual setting)
+			$global_inherit_from_theme = get_option( 'rbea_global_inherit_from_theme');
+			$rbea_global_inherit_from_theme_last_changed = get_option( 'rbea_global_inherit_from_theme_last_changed');
+			$inheritFromThemeLocalTimestamp = isset($attr['inheritFromThemeLocalTimestamp']) ? $attr['inheritFromThemeLocalTimestamp'] : '';
+			// $flag = ($rbea_global_inherit_from_theme_last_changed && (!$inheritFromThemeLocalTimestamp || strtotime($rbea_global_inherit_from_theme_last_changed) > strtotime($inheritFromThemeLocalTimestamp)));
+			?>
+			<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				console.log('coming here 1');
+				const globalTs = <?php echo wp_json_encode( (string) get_option( 'rbea_global_inherit_from_theme_last_changed', '' ) ); ?>;
+				const localTs  = <?php echo wp_json_encode( isset( $attr['inheritFromThemeLocalTimestamp'] ) ? (string) $attr['inheritFromThemeLocalTimestamp'] : '' ); ?>;
+				const globalOn = <?php echo get_option( 'rbea_global_inherit_from_theme', '0' ) === '1' ? 'true' : 'false'; ?>;
+
+				if (globalTs && (!localTs || Date.parse(globalTs) > Date.parse(localTs))) {
+					console.log('coming here 2');
+					if (globalOn) {
+						console.log('coming here 3');
+						var scope = document.querySelector('.responsive-block-editor-addons-buttons-child.block-<?php echo esc_js( $raw_id ); ?>');
+						if (!scope) return;
+						var wrapper = scope.querySelector('.responsive-block-editor-addons-button__wrapper');
+						if (wrapper) wrapper.classList.add('wp-block-button');
+						var link = scope.querySelector('.responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper');
+						if (link) link.classList.add('wp-block-button__link');
+					}
+					else {
+						console.log('removing classes');
+						const inheritFromTheme = <?php echo wp_json_encode( $attr['inheritFromThemesaved'] ); ?>;
+						if(!inheritFromTheme){
+							var scope = document.querySelector('.responsive-block-editor-addons-buttons-child.block-<?php echo esc_js( $raw_id ); ?>');
+							if (!scope) return;
+							var wrapper = scope.querySelector('.responsive-block-editor-addons-button__wrapper');
+							if (wrapper) wrapper.classList.remove('wp-block-button');
+							var link = scope.querySelector('.responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper');
+							if (link) link.classList.remove('wp-block-button__link');
+						}
+					}
+				}
+			});
+			</script>
+			<?php
+
 			$new_margin_padding_keys = array(
 				'blockTopPadding'          => 'vPadding' ? 'vPadding' : '',
 				'blockRightPadding'        => 'hPadding' ? 'hPadding' : '',
@@ -3853,7 +3894,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'border-top-right-radius'    => self::get_css_value( $attr['blockRightRadius'], 'px' ),
 					'border-bottom-right-radius' => self::get_css_value( $attr['blockBottomRadius'], 'px' ),
 					'border-bottom-left-radius'  => self::get_css_value( $attr['blockLeftRadius'], 'px' ),
-					'border-style'               => $attr['borderStyle'],
+					'border-style'               => $attr['inheritFromTheme'] ? 'solid' : $attr['borderStyle'],
 					'border-width'               => $attr['inheritFromTheme'] ? '' : (self::get_css_value( $attr['borderWidth'], 'px' )),
 					'box-shadow'                 =>
 					self::get_css_value( $attr['boxShadowHOffset'], 'px' ) .
@@ -3872,7 +3913,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'padding-top'                => self::get_css_value( $attr['blockTopPadding'], 'px' ),
 					'padding-bottom'             => self::get_css_value( $attr['blockBottomPadding'], 'px' ),
 					'background-image'           => $updated_background_image,
-					'background-color'           => $attr['inheritFromTheme'] ? '' : $updated_background_color,
+					'background-color'           => $updated_background_color,
 					'font-size'                  => self::get_css_value( $attr['buttonFontSize'], 'px' ),
 					'font-family'                => $attr['buttonFontFamily'],
 					'font-weight'                => $attr['buttonFontWeight'],
@@ -3887,7 +3928,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'color' => $attr['inheritFromTheme'] ? '' : ( $attr['color'] ? $attr['color'] : '#000' ),
 				),
 				' .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper:hover' => array(
-					'border-color'     => $attr['borderHColor'] ? self::hex_to_rgb( $updated_border_h_color, $border_opacity_control_value ) : '#000',
+					'border-color'     => $attr['inheritFromTheme'] ? '' : ($attr['borderHColor'] ? self::hex_to_rgb( $updated_border_h_color, $border_opacity_control_value ) : '#000'),
 					'background-color' => $updated_background_h_color,
 					'box-shadow'       => ( isset( $attr['hoverboxShadowColor'] ) && ! empty( $attr['hoverboxShadowColor'] ) ) ?
 					self::get_css_value( $attr['hoverboxShadowHOffset'], 'px' ) .
@@ -3964,45 +4005,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			$id                 = '.responsive-block-editor-addons-buttons-child.block-' . $id;
 			$css                = Responsive_Block_Editor_Addons_Frontend_Styles_Helper::responsive_block_editor_addons_generate_all_css( $combined_selectors, $id );
 
-			// Check if should inherit from theme (global OR individual setting)
-			$global_inherit_from_theme = get_option( 'rbea_global_inherit_from_theme');
-			$rbea_global_inherit_from_theme_last_changed = get_option( 'rbea_global_inherit_from_theme_last_changed');
-			$inheritFromThemeLocalTimestamp = $attr['inheritFromThemeLocalTimestamp'];
-
-			?>
-			<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				console.log('coming here 1');
-				const globalTs = <?php echo wp_json_encode( (string) get_option( 'rbea_global_inherit_from_theme_last_changed', '' ) ); ?>;
-				const localTs  = <?php echo wp_json_encode( isset( $attr['inheritFromThemeLocalTimestamp'] ) ? (string) $attr['inheritFromThemeLocalTimestamp'] : '' ); ?>;
-				const globalOn = <?php echo get_option( 'rbea_global_inherit_from_theme', '0' ) === '1' ? 'true' : 'false'; ?>;
-
-				if (globalTs && (!localTs || Date.parse(globalTs) > Date.parse(localTs))) {
-					console.log('coming here 2');
-					if (globalOn) {
-						console.log('coming here 3');
-						var scope = document.querySelector('.responsive-block-editor-addons-buttons-child.block-<?php echo esc_js( $raw_id ); ?>');
-						if (!scope) return;
-						var wrapper = scope.querySelector('.responsive-block-editor-addons-button__wrapper');
-						if (wrapper) wrapper.classList.add('wp-block-button');
-						var link = scope.querySelector('.responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper');
-						if (link) link.classList.add('wp-block-button__link');
-					}
-					else {
-						const inheritFromTheme = <?php echo wp_json_encode( $attr['inheritFromThemesaved'] ); ?>;
-						if(!inheritFromTheme){
-							var scope = document.querySelector('.responsive-block-editor-addons-buttons-child.block-<?php echo esc_js( $raw_id ); ?>');
-							if (!scope) return;
-							var wrapper = scope.querySelector('.responsive-block-editor-addons-button__wrapper');
-							if (wrapper) wrapper.classList.remove('wp-block-button');
-							var link = scope.querySelector('.responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper');
-							if (link) link.classList.remove('wp-block-button__link');
-						}
-					}
-				}
-			});
-			</script>
-			<?php
 			return $css;
 		}
 

@@ -240,7 +240,7 @@ function EditorStyles(props) {
       "padding-top": generateCSSUnit(blockTopPadding, "px"),
       "padding-bottom": generateCSSUnit(blockBottomPadding, "px"),
       "background-image": updatedBackgroundImage,
-      "background-color": updatedBackgroundColor,
+      "background-color": inheritFromTheme ? "" : "#007cba",
       "font-size": generateCSSUnit(buttonFontSize, "px"),
       "font-family": buttonFontFamily,
       "font-weight": buttonFontWeight,
@@ -256,7 +256,7 @@ function EditorStyles(props) {
     },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper:hover": {
       "border-color": borderHColor,
-      "background-color": updatedBackgroundHColor,
+      "background-color": inheritFromTheme ? "" : updatedBackgroundHColor,
       "box-shadow": hoverboxShadowColor !== ""
 		  ? generateCSSUnit(hoverboxShadowHOffset, "px") +
         	" " +
