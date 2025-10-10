@@ -34,6 +34,8 @@ export default class Save extends Component {
       boxShadowPosition,
       hoverEffect,
       inheritFromTheme,
+      inheritFromThemesaved,
+      inheritFromThemeLocalTimestamp,
       noFollow,
     } = this.props.attributes;
 
@@ -50,8 +52,9 @@ export default class Save extends Component {
     if ("outset" === boxShadowPosition) {
       boxShadowPositionCSS = "";
     }
-
+    
     return [
+      
       <Buttons {...this.props}>
         <div
           className={classnames(
@@ -60,6 +63,8 @@ export default class Save extends Component {
             `responsive-block-editor-addons-button__effect-${hoverEffect}`,
             inheritFromTheme ? "wp-block-button" : null
           )}
+          data-inherit-from-theme={inheritFromThemesaved ? '1' : '0'}
+          data-local-timestamp={inheritFromThemeLocalTimestamp || ''}
         >
           <a
             className={classnames(
