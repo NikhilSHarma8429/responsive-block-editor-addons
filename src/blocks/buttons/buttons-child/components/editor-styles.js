@@ -217,12 +217,12 @@ function EditorStyles(props) {
     },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper": {
       "border-color": borderColor ? hexToRgba(borderColor, borderOpacityControlValue) : "#000",
-      "border-top-left-radius": generateCSSUnit(blockTopRadius, "px"),
-      "border-top-right-radius": generateCSSUnit(blockRightRadius, "px"),
-      "border-bottom-right-radius": generateCSSUnit(blockBottomRadius, "px"),
-      "border-bottom-left-radius": generateCSSUnit(blockLeftRadius, "px"),
-      "border-style": borderStyle,
-      "border-width": generateCSSUnit(borderWidth, "px"),
+      "border-top-left-radius": inheritFromTheme ? '' : generateCSSUnit(blockTopRadius, "px"),
+      "border-top-right-radius": inheritFromTheme ? '' : generateCSSUnit(blockRightRadius, "px"),
+      "border-bottom-right-radius": inheritFromTheme ? '' : generateCSSUnit(blockBottomRadius, "px"),
+      "border-bottom-left-radius": inheritFromTheme ? '' : generateCSSUnit(blockLeftRadius, "px"),
+      "border-style": inheritFromTheme ? 'solid' : borderStyle,
+      "border-width": inheritFromTheme ? '' : generateCSSUnit(borderWidth, "px"),
       "box-shadow":
         generateCSSUnit(boxShadowHOffset, "px") +
         " " +
@@ -235,12 +235,12 @@ function EditorStyles(props) {
         boxShadowColor +
         " " +
         boxShadowPositionCSS,
-      "padding-left": generateCSSUnit(blockLeftPadding, "px"),
-      "padding-right": generateCSSUnit(blockRightPadding, "px"),
-      "padding-top": generateCSSUnit(blockTopPadding, "px"),
-      "padding-bottom": generateCSSUnit(blockBottomPadding, "px"),
+      "padding-left": inheritFromTheme ? '' : generateCSSUnit(blockLeftPadding, "px"),
+      "padding-right": inheritFromTheme ? '' : generateCSSUnit(blockRightPadding, "px"),
+      "padding-top": inheritFromTheme ? '' : generateCSSUnit(blockTopPadding, "px"),
+      "padding-bottom": inheritFromTheme ? '' : generateCSSUnit(blockBottomPadding, "px"),
       "background-image": updatedBackgroundImage,
-      "background-color": inheritFromTheme ? "" : "#007cba",
+      "background-color": updatedBackgroundColor,
       "font-size": generateCSSUnit(buttonFontSize, "px"),
       "font-family": buttonFontFamily,
       "font-weight": buttonFontWeight,
@@ -256,7 +256,7 @@ function EditorStyles(props) {
     },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper:hover": {
       "border-color": borderHColor,
-      "background-color": inheritFromTheme ? "" : updatedBackgroundHColor,
+      "background-color": updatedBackgroundHColor,
       "box-shadow": hoverboxShadowColor !== ""
 		  ? generateCSSUnit(hoverboxShadowHOffset, "px") +
         	" " +
