@@ -124,8 +124,11 @@ export default class Save extends Component {
                 buttonSize,
                 inheritFromTheme ? "wp-block-button" : null
               )}
+              data-rbea-inherit-wrapper="true"
               data-inherit-from-theme={inheritFromThemesaved ? '1' : '0'}
               data-local-timestamp={inheritFromThemeLocalTimestamp || ''}
+              data-rbea-inherit-parent="self"
+              data-rbea-inherit-child="a"
             >
               {"" !== icon && iconPosition == "before" && (
                 <span
@@ -144,7 +147,7 @@ export default class Save extends Component {
                 className={classnames(
                   "responsive-block-editor-addons-cta-button",
                   buttonSize,
-                  inheritFromTheme ? "wp-block-button__link" : null
+                  inheritFromTheme ? "wp-block-button wp-block-button__link" : null
                 )}
               >
                 <RichText.Content value={buttonText} />

@@ -41,6 +41,11 @@ export default class Save extends Component {
           `block-${block_id}`,
           inheritFromTheme ? "wp-block-button" : null
         )}
+        data-rbea-inherit-wrapper="true"
+        data-inherit-from-theme={inheritFromThemesaved ? '1' : '0'}
+        data-local-timestamp={inheritFromThemeLocalTimestamp || ''}
+        data-rbea-inherit-parent="self"
+        data-rbea-inherit-child=".responsive-block-editor-addons-call-mail-button-button-container"
       >
         <a
           className={classnames(
@@ -48,8 +53,6 @@ export default class Save extends Component {
             buttonSize,
             inheritFromTheme ? "wp-block-button wp-block-button__link" : null
           )}
-          data-inherit-from-theme={inheritFromThemesaved ? '1' : '0'}
-          data-local-timestamp={inheritFromThemeLocalTimestamp || ''}
           href={"call" === buttonToShow ? callHref : mailHref}
         >
           {"" !== icon && "left" == iconPosition && (

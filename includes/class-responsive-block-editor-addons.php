@@ -2110,6 +2110,25 @@ class Responsive_Block_Editor_Addons {
 			);
 		}
 
+		// Enqueue inherit from theme frontend script
+		wp_enqueue_script(
+			'responsive-block-editor-addons-inherit-theme',
+			RESPONSIVE_BLOCK_EDITOR_ADDONS_URL . 'dist/responsive-block-editor-addons-inherit-theme.js',
+			array(),
+			RESPONSIVE_BLOCK_EDITOR_ADDONS_VER,
+			true
+		);
+
+		// Localize script with global inherit from theme settings
+		wp_localize_script(
+			'responsive-block-editor-addons-inherit-theme',
+			'rbea_globals',
+			array(
+				'global_inherit_from_theme' => get_option( 'rbea_global_inherit_from_theme', '0' ),
+				'global_inherit_from_theme_last_changed' => get_option( 'rbea_global_inherit_from_theme_last_changed', '' ),
+			)
+		);
+
 	}
 
 	/**

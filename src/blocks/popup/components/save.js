@@ -44,7 +44,17 @@ export default class Save extends Component {
       >
         {isPopupVariantSelected &&
           <>
-            <div className="responsive-block-editor-addons-popup-trigger-wrap">
+            <div className={classnames(
+              "responsive-block-editor-addons-popup-trigger-wrap",
+              inheritFromTheme ? "wp-block-button" : null
+              )}
+              data-rbea-inherit-wrapper="true"
+              data-inherit-from-theme={inheritFromThemesaved ? '1' : '0'}
+              data-local-timestamp={inheritFromThemeLocalTimestamp || ''}
+              data-rbea-inherit-parent="self"
+              data-rbea-inherit-child=".responsive-block-editor-addons-popup-button-trigger"
+              data-rbea-inherit-child-extra="wp-block-button"
+            >
 
               {popupTrigger && popupTrigger === 'click' && popupTriggerType === 'button' &&
                 <button 
@@ -54,8 +64,6 @@ export default class Save extends Component {
                     "responsive-block-editor-addons-popup-modal-trigger",
                     inheritFromTheme ? "wp-block-button wp-block-button__link" : null
                   )}
-                  data-inherit-from-theme={inheritFromThemesaved ? '1' : '0'}
-                  data-local-timestamp={inheritFromThemeLocalTimestamp || ''}
                   data-trigger-id={`trigger-${block_id}`}
                 > 
                   {popupButtonText}

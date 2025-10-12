@@ -179,8 +179,11 @@ export default class Save extends Component {
                       "wp-block-responsive-block-editor-addons-pricing-table-item__button-wrapper",
                       inheritFromTheme ? "wp-block-button" : null
                     )}
+                    data-rbea-inherit-wrapper="true"
                     data-inherit-from-theme={inheritFromThemesaved ? '1' : '0'}
                     data-local-timestamp={inheritFromThemeLocalTimestamp || ''}
+                    data-rbea-inherit-parent="self"
+                    data-rbea-inherit-child="a"
                   >
                     <a
                       href={pricingTable[index]["buttonURL"]}
@@ -188,7 +191,7 @@ export default class Save extends Component {
                       rel={buttonTarget ? "noopener noreferrer" : null}
                       className={classnames(
                         "wp-block-responsive-block-editor-addons-pricing-table-item__button",
-                        inheritFromTheme ? "wp-block-button__link" : null
+                        inheritFromTheme ? "wp-block-button wp-block-button__link" : null
                       )}
                     >
                       <RichText.Content value={pricingTable[index]["button"]} />

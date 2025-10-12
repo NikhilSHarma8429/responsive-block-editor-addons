@@ -157,7 +157,8 @@ export default class Edit extends Component {
         <div
           className={classnames(
             "responsive-block-editor-addons-block-call-to-action",
-            `block-${block_id}`
+            `block-${block_id}`,
+            inheritFromTheme ? "wp-block-button" : null
           )}
         >
           {"image" == backgroundType && backgroundImage && !!backgroundImage.length && (
