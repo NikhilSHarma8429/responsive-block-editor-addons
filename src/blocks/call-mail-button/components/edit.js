@@ -57,6 +57,7 @@ export default class Edit extends Component {
         icon,
         iconPosition,
         buttonAlign,
+        inheritFromTheme,
       },
       setAttributes,
       mergeBlocks,
@@ -126,7 +127,8 @@ export default class Edit extends Component {
               tagName="span"
               placeholder={__("Call", "responsive-block-editor-addons")}
               value={callText}
-              className="responsive-block-editor-addons-call-mail-button-text"
+              className={classnames("responsive-block-editor-addons-call-mail-button-text",
+                                      inheritFromTheme ? "wp-block-button wp-block-button__link" : null)}
               onChange={(value) => setAttributes({ callText: value })}
               multiline={false}
               allowedFormats={[
@@ -144,7 +146,8 @@ export default class Edit extends Component {
               value={mailText}
               onChange={(value) => setAttributes({ mailText: value })}
               multiline={false}
-              className="responsive-block-editor-addons-call-mail-button-text"
+              className={classnames("responsive-block-editor-addons-call-mail-button-text",
+                                      inheritFromTheme ? "wp-block-button wp-block-button__link" : null)}
               allowedFormats={[
                 "core/bold",
                 "core/italic",

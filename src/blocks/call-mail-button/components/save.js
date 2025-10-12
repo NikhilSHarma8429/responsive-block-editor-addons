@@ -27,6 +27,9 @@ export default class Save extends Component {
       buttonSize,
       icon,
       iconPosition,
+      inheritFromTheme,
+      inheritFromThemesaved,
+      inheritFromThemeLocalTimestamp,
     } = this.props.attributes;
     let callHref = `tel:${phone}`;
     let mailHref = `mailto: ${mail}`;
@@ -35,14 +38,18 @@ export default class Save extends Component {
         className={classnames(
           this.props.className, 
           "responsive-block-editor-addons-block-call-mail-button",
-          `block-${block_id}`
+          `block-${block_id}`,
+          inheritFromTheme ? "wp-block-button" : null
         )}
       >
         <a
           className={classnames(
             "responsive-block-editor-addons-call-mail-button-button-container",
-            buttonSize
+            buttonSize,
+            inheritFromTheme ? "wp-block-button wp-block-button__link" : null
           )}
+          data-inherit-from-theme={inheritFromThemesaved ? '1' : '0'}
+          data-local-timestamp={inheritFromThemeLocalTimestamp || ''}
           href={"call" === buttonToShow ? callHref : mailHref}
         >
           {"" !== icon && "left" == iconPosition && (

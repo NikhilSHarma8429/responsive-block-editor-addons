@@ -28,6 +28,9 @@ export default class Save extends Component {
       popupButtonText,
       block_id,
       anchor,
+      inheritFromTheme,
+      inheritFromThemesaved,
+      inheritFromThemeLocalTimestamp,
     } = this.props.attributes;
 
     return [
@@ -44,7 +47,18 @@ export default class Save extends Component {
             <div className="responsive-block-editor-addons-popup-trigger-wrap">
 
               {popupTrigger && popupTrigger === 'click' && popupTriggerType === 'button' &&
-                <button type="button" className="responsive-block-editor-addons-popup-button-trigger responsive-block-editor-addons-popup-modal-trigger" data-trigger-id={`trigger-${block_id}`}> {popupButtonText}
+                <button 
+                  type="button" 
+                  className={classnames(
+                    "responsive-block-editor-addons-popup-button-trigger",
+                    "responsive-block-editor-addons-popup-modal-trigger",
+                    inheritFromTheme ? "wp-block-button wp-block-button__link" : null
+                  )}
+                  data-inherit-from-theme={inheritFromThemesaved ? '1' : '0'}
+                  data-local-timestamp={inheritFromThemeLocalTimestamp || ''}
+                  data-trigger-id={`trigger-${block_id}`}
+                > 
+                  {popupButtonText}
                 </button>
               }
 

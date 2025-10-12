@@ -185,13 +185,13 @@ export const initAutoBlockRecovery = () => {
 };
 
 // Initialize Global Inherit From Theme functionality
-// export const initGlobalInheritFromThemeSystem = () => {
-// 	if (window._wpLoadBlockEditor) {
-// 		window._wpLoadBlockEditor.then(() => {
-// 			initGlobalInheritFromTheme();
-// 		});
-// 	}
-// };
+export const initGlobalInheritFromThemeSystem = () => {
+	if (window._wpLoadBlockEditor) {
+		window._wpLoadBlockEditor.then(() => {
+			initGlobalInheritFromTheme();
+		});
+	}
+};
 
 // Initialize auto block recovery only if enabled
 domReady( initAutoBlockRecovery );

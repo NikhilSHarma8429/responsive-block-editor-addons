@@ -111,6 +111,7 @@ export default class Edit extends Component {
         imageSize,
         imageShape,
         imageWidth,
+        inheritFromTheme,
       },
       setAttributes,
     } = this.props;
@@ -452,7 +453,8 @@ export default class Edit extends Component {
                     <RichText
                       tagName="p"
                       className={classnames(
-                        "wp-block-responsive-block-editor-addons-pricing-table-item__button"
+                        "wp-block-responsive-block-editor-addons-pricing-table-item__button",
+                        inheritFromTheme ? "wp-block-button wp-block-button__link" : null
                       )}
                       value={String(pricingTable[index]["button"])}
                       placeholder={__("$", "responsive-block-editor-addons")}

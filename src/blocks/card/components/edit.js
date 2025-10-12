@@ -65,6 +65,7 @@ export default class Edit extends Component {
         headingFontFamily,
         contentFontFamily,
         buttonTarget,
+        inheritFromTheme,
       },
       setAttributes,
     } = this.props;
@@ -238,7 +239,8 @@ export default class Edit extends Component {
                       tagName="a"
                       className={classnames(
                         "wp-block-responsive-block-editor-addons-card-item__button res-button",
-                        buttonSize
+                        buttonSize,
+                        inheritFromTheme ? "wp-block-button wp-block-button__link" : null
                       )}
                       value={cardsArray[index]["button"]}
                       placeholder={__("$", "responsive-block-editor-addons")}

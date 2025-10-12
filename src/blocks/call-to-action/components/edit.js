@@ -87,6 +87,7 @@ export default class Edit extends Component {
         backgroundType,
         boxShadowPosition,
         opacity,
+        inheritFromTheme,
       },
       isSelected,
       setAttributes,
@@ -243,7 +244,8 @@ export default class Edit extends Component {
                 value={buttonText}
                 allowedFormats={[]}
                 className={classnames(
-                  "responsive-block-editor-addons-cta-button"
+                  "responsive-block-editor-addons-cta-button",
+                  inheritFromTheme ? "wp-block-button wp-block-button__link" : null
                 )}
                 onChange={(value) => setAttributes({ buttonText: value })}
               />

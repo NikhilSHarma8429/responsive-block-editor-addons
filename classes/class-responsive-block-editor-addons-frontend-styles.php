@@ -4930,7 +4930,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 
 				' .wp-block-responsive-block-editor-addons-card-item__button-wrapper .responsive-block-editor-addons-card-button-inner' => array(
-					'background-color' => $updated_button_color,
+					'background-color' => $updated_button_color ? $updated_button_color : '#2091e1',
 				),
 
 				' .responsive-block-editor-addons-card-button-inner:hover' => array(
