@@ -4,7 +4,7 @@ import Icons from "../icons";
 import { ToggleControl } from "@wordpress/components";
 import debounce from 'lodash/debounce';
 import { displayToast } from "../DisplayToast";
-import { convertTruthyFalsyValue } from "../../../../src/utils/helper";
+import { convertTruthyFalsyValue } from "../../../../assets/utils/helper";
 
 const Settings = () => {
 

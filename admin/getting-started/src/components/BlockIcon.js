@@ -1,4 +1,4 @@
-import ResponsiveBlockEditorAddonsIcons from '../../../../src/block-icons';
+import ResponsiveBlockEditorAddonsIcons from '../../../../assets/block-icons';
 
 const BlockIcon = ({ block }) => {
 

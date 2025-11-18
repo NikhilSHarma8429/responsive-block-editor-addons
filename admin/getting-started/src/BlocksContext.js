@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { displayToast } from './DisplayToast'; 
-import { convertTruthyFalsyValue } from "../../../src/utils/helper";
+import { convertTruthyFalsyValue } from "../../../assets/utils/helper";
 
 export const BlocksContext = createContext();
 

@@ -26,7 +26,6 @@ module.exports = function( grunt ) {
                             'helper/**',
                             'assets/**',
                             'readme.txt',
-                            'src/**',
                             '!admin/getting-started/**',
                             '!**/*.css.map',
                             '!**/*.js.map',

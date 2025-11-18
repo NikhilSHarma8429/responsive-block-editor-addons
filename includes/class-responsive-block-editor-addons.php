@@ -557,23 +557,23 @@ class Responsive_Block_Editor_Addons {
 		/**
 		* Load Post Grid PHP
 		*/
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/post-grid/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/post-carousel/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/gallery-masonry/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/accordion/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/post-timeline/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/image-slider/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/testimonial-slider/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/utils/fonts.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/post-grid/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/post-carousel/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/gallery-masonry/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/accordion/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/post-timeline/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/image-slider/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/testimonial-slider/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/fonts.php';
 		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'classes/class-responsive-block-editor-addons-frontend-styles-helper.php';
 		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'classes/class-responsive-block-editor-addons-frontend-styles.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/inline-notice/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/taxonomy-list/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/instagram/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/image-hotspot/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/portfolio/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/form/index.php';
-		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'src/blocks/content-timeline/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/inline-notice/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/taxonomy-list/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/instagram/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/image-hotspot/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/portfolio/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/form/index.php';
+		require_once RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'includes/blocks/content-timeline/index.php';
 
 		/**
 		 * REST API Endpoints for Layouts.

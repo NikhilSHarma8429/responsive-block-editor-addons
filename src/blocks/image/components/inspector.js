@@ -1068,42 +1068,42 @@ if (!imageIsRadiusValueUpdated) {
                   },
                   {
                     value:
-                      "/wp-content/plugins/responsive-block-editor-addons/src/utils/masks/circle.svg",
+                      "/wp-content/plugins/responsive-block-editor-addons/assets/utils/masks/circle.svg",
                     label: __("Circle", "responsive-block-editor-addons"),
                   },
                   {
                     value:
-                      "/wp-content/plugins/responsive-block-editor-addons/src/utils/masks/diamond.svg",
+                      "/wp-content/plugins/responsive-block-editor-addons/assets/utils/masks/diamond.svg",
                     label: __("Diamond", "responsive-block-editor-addons"),
                   },
                   {
                     value:
-                      "/wp-content/plugins/responsive-block-editor-addons/src/utils/masks/hexagon.svg",
+                      "/wp-content/plugins/responsive-block-editor-addons/assets/utils/masks/hexagon.svg",
                     label: __("Hexagon", "responsive-block-editor-addons"),
                   },
                   {
                     value:
-                      "/wp-content/plugins/responsive-block-editor-addons/src/utils/masks/rounded.svg",
+                      "/wp-content/plugins/responsive-block-editor-addons/assets/utils/masks/rounded.svg",
                     label: __("Rounded", "responsive-block-editor-addons"),
                   },
                   {
                     value:
-                      "/wp-content/plugins/responsive-block-editor-addons/src/utils/masks/blob1.svg",
+                      "/wp-content/plugins/responsive-block-editor-addons/assets/utils/masks/blob1.svg",
                     label: __("Blob 1", "responsive-block-editor-addons"),
                   },
                   {
                     value:
-                      "/wp-content/plugins/responsive-block-editor-addons/src/utils/masks/blob2.svg",
+                      "/wp-content/plugins/responsive-block-editor-addons/assets/utils/masks/blob2.svg",
                     label: __("Blob 2", "responsive-block-editor-addons"),
                   },
                   {
                     value:
-                      "/wp-content/plugins/responsive-block-editor-addons/src/utils/masks/blob3.svg",
+                      "/wp-content/plugins/responsive-block-editor-addons/assets/utils/masks/blob3.svg",
                     label: __("Blob 3", "responsive-block-editor-addons"),
                   },
                   {
                     value:
-                      "/wp-content/plugins/responsive-block-editor-addons/src/utils/masks/blob4.svg",
+                      "/wp-content/plugins/responsive-block-editor-addons/assets/utils/masks/blob4.svg",
                     label: __("Blob 4", "responsive-block-editor-addons"),
                   },
                 ]}

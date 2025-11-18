@@ -212,7 +212,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles_Helper' ) )
 		 */
 		public static function backend_load_font_awesome_icons() {
 
-			$json_file = plugin_dir_path( __FILE__ ) . '../src/ResponsiveBlocksIcon.json';
+			$json_file = plugin_dir_path( __FILE__ ) . '../assets/ResponsiveBlocksIcon.json';
 
 			if ( ! file_exists( $json_file ) ) {
 				return array();
