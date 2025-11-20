@@ -12,8 +12,9 @@ import InspectorTabs from "../../../components/InspectorTabs";
 import BlockBorderHelperControl from "../../../settings-components/BlockBorderSettings";
 import ColorBackgroundControl from "../../../settings-components/BlockBackgroundSettings/ColorBackgroundSettings";
 import ImageBackgroundControl from "../../../settings-components/BlockBackgroundSettings/ImageBackgroundSettings";
-import GradientBackgroundControl from "../../../settings-components/BlockBackgroundSettings/GradientBackgroundSettings";
 import TypographyHelperControl from "../../../settings-components/TypographySettings";
+import { GradientPicker } from "@wordpress/components";
+import { hexToRgba } from "../../../utils/index.js";
 import ResponsiveNewPaddingControl from "../../../settings-components/ResponsiveNewSpacingSettings/ResponsiveNewPaddingControl/index";
 import ResponsiveNewMarginControl from "../../../settings-components/ResponsiveNewSpacingSettings/ResponsiveNewMarginControl/index";
 import RbeaRangeControl from "../../../utils/components/rbea-range-control";
@@ -128,6 +129,55 @@ export default class Inspector extends Component {
       { value: "image", label: __("Image", "responsive-block-editor-addons") },
       { value: "video", label: __("Video", "responsive-block-editor-addons") },
     ];
+
+    // Gradient options for WordPress GradientPicker (same as container)
+    const gradientOptions = [
+      {
+        name: 'JShine',
+        gradient:
+          'linear-gradient(135deg,#12c2e9 0%,#c471ed 50%,#f64f59 100%)',
+        slug: 'jshine',
+      },
+      {
+        name: 'Moonlit Asteroid',
+        gradient:
+          'linear-gradient(135deg,#0F2027 0%, #203A43 0%, #2c5364 100%)',
+        slug: 'moonlit-asteroid',
+      },
+      {
+        name: 'Rastafarie',
+        gradient:
+          'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
+        slug: 'rastafari',
+      },
+    ];
+
+    // Convert old gradient attributes to WordPress gradient format if needed
+    const getGradientValue = () => {
+      // If gradient already exists (WordPress format), use it
+      if (gradient) {
+        return gradient;
+      }
+      
+      // Otherwise, convert from old attributes to WordPress format
+      if (backgroundColor1 || backgroundColor2) {
+        const imgopacity = opacity ? opacity / 100 : 1;
+        const color1 = hexToRgba(backgroundColor1 || "#fff", imgopacity);
+        const color2 = hexToRgba(backgroundColor2 || "#fff", imgopacity);
+        const location1 = colorLocation1 !== undefined ? colorLocation1 : 0;
+        const location2 = colorLocation2 !== undefined ? colorLocation2 : 100;
+        const direction = gradientDirection !== undefined ? gradientDirection : 90;
+        
+        return `linear-gradient(${direction}deg, ${color1} ${location1}%, ${color2} ${location2}%)`;
+      }
+      
+      return undefined;
+    };
+
+    // Handle gradient change - save to new format
+    const onGradientChange = (value) => {
+      setAttributes({ gradient: value });
+    };
     // Cite Alignment Options
     const citeAlignOptions = [
       {
@@ -241,6 +291,7 @@ export default class Inspector extends Component {
         colorLocation1,
         colorLocation2,
         gradientDirection,
+        gradient,
         backgroundType,
         backgroundImage,
         backgroundVideo,
@@ -748,9 +799,10 @@ export default class Inspector extends Component {
               )}
               {"gradient" == backgroundType && (
                 <Fragment>
-                  <GradientBackgroundControl
-                    {...this.props}
-                    showHoverGradient = {false}
+                  <GradientPicker
+                    value={getGradientValue()}
+                    onChange={onGradientChange}
+                    gradients={gradientOptions}
                   />
                 </Fragment>
               )}

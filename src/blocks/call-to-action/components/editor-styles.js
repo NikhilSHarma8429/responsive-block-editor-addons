@@ -192,6 +192,7 @@ function EditorStyles(props) {
   buttonTextTextTransform,
   buttonTextFontStyle,
   inheritFromTheme,
+  gradient,
   } = props.attributes;
   let updatedButtonBackgroundColor = "";
   let updatedButtonBackgroundhColor = "";
@@ -276,13 +277,16 @@ function EditorStyles(props) {
           : undefined,
       "background-image":
         backgroundType == "gradient"
-          ? generateBackgroundImageEffect(
-              backgroundColor1,
-              backgroundColor2,
-              gradientDirection,
-              colorLocation1,
-              colorLocation2
-            )
+          ? (gradient || // Use WordPress gradient format if available
+             (backgroundColor1 || backgroundColor2
+               ? `linear-gradient(${gradientDirection}deg, ${hexToRgba(
+                   backgroundColor1 || "#fff",
+                   imgopacity || 0
+                 )} ${colorLocation1}%, ${hexToRgba(
+                   backgroundColor2 || "#fff",
+                   imgopacity || 0
+                 )} ${colorLocation2}%)`
+               : undefined)) // Fallback to old format for backward compatibility
           : undefined,
       "border-top-left-radius": generateCSSUnit(blockTopRadius, "px"),
       "border-top-right-radius": generateCSSUnit(blockRightRadius, "px"),

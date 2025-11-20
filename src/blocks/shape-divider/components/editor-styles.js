@@ -5,6 +5,7 @@
 import generateCSS from "../../../generateCSS";
 import generateCSSUnit from "../../../generateCSSUnit";
 import generateBackgroundImageEffect from "../../../generateBackgroundImageEffect";
+import { hexToRgba } from "../../../utils/index.js";
 
 function EditorStyles(props) {
   const {
@@ -47,6 +48,7 @@ function EditorStyles(props) {
 		blockRightPadding,
 		blockRightPaddingMobile,
 		blockRightPaddingTablet,
+    gradient,
   } = props.attributes;
   const isOn = responsive_globals?.is_responsive_conditions_on ?? 1;
 
@@ -57,13 +59,14 @@ function EditorStyles(props) {
       "background-color": backgroundType == "color" ? backgroundColor : null,
       "background-image":
         backgroundType == "gradient"
-          ? generateBackgroundImageEffect(
-              backgroundColor1,
-              backgroundColor2,
-              gradientDirection,
-              colorLocation1,
-              colorLocation2
-            )
+          ? (gradient || // Use WordPress gradient format if available
+             (backgroundColor1 || backgroundColor2
+               ? `linear-gradient(${gradientDirection}deg, ${hexToRgba(
+                   backgroundColor1 || "#fff", 0
+                 )} ${colorLocation1}%, ${hexToRgba(
+                   backgroundColor2 || "#fff", 0
+                 )} ${colorLocation2}%)`
+               : undefined)) // Fallback to old format for backward compatibility
           : undefined,
       'padding-top': generateCSSUnit(blockTopPadding, "px"),
       'padding-right': generateCSSUnit(blockRightPadding, "px"),

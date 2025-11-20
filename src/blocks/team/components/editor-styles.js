@@ -179,6 +179,7 @@ function EditorStyles(props) {
     backgroundPositionFocalMobile,
     overlayType,
     backgroundImageColor,
+    gradient,
     gradientOverlayColor1,
     gradientOverlayLocation1,
     gradientOverlayColor2,
@@ -421,14 +422,17 @@ function EditorStyles(props) {
           : undefined,
       "background-image": backgroundType === "image" && overlayType === "gradient"
         ? backgroundImageEffect
-        : backgroundType === "gradient"
-        ? generateBackgroundImageEffect(
-            `${hexToRgba(backgroundColor1 || "#fff", imgopacity || 0)}`,
-            `${hexToRgba(backgroundColor2 || "#fff", imgopacity || 0)}`,
-            gradientDirection,
-            colorLocation1,
-            colorLocation2
-          )
+        : backgroundType == "gradient"
+          ? (gradient || // Use WordPress gradient format if available
+             (backgroundColor1 || backgroundColor2
+               ? `linear-gradient(${gradientDirection}deg, ${hexToRgba(
+                   backgroundColor1 || "#fff",
+                   imgopacity || 0
+                 )} ${colorLocation1}%, ${hexToRgba(
+                   backgroundColor2 || "#fff",
+                   imgopacity || 0
+                 )} ${colorLocation2}%)`
+               : undefined))
         : backgroundType === "image"
         ? updatedBackgroundImage
         : undefined,

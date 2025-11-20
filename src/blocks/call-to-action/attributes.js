@@ -227,6 +227,12 @@ const attributes = {
     type: "number",
     default: 100,
   },
+  gradient: {
+    type: "string",
+  },
+  buttonGradient: {
+    type: "string",
+  },
   gradientDirection: {
     type: "number",
     default: 90,

@@ -164,6 +164,9 @@ const attributes = {
     type: "number",
     default: 100,
   },
+  gradient: {
+    type: "string",
+  },
   gradientDirection: {
     type: "number",
     default: 90,

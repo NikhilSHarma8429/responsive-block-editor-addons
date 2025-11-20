@@ -235,6 +235,7 @@ function EditorStyles(props) {
         ctaFontStyle,
         titleFontStyle,
         descFontStyle,
+        gradient,
   } = props.attributes;
 
   var boxShadowPositionCSS = boxShadowPosition;
@@ -382,20 +383,17 @@ function EditorStyles(props) {
             )}`
           : undefined,
       "background-image":
-        backgroundType === "gradient"
-          ? generateBackgroundImageEffect(
-              `${hexToRgba(
-                backgroundColor1 || "#fff",
-                gradientOpacity || 0
-              )}`,
-              `${hexToRgba(
-                backgroundColor2 || "#fff",
-                gradientOpacity || 0
-              )}`,
-              gradientDirection,
-              colorLocation1,
-              colorLocation2
-            )
+        backgroundType == "gradient"
+          ? (gradient || // Use WordPress gradient format if available
+             (backgroundColor1 || backgroundColor2
+               ? `linear-gradient(${gradientDirection}deg, ${hexToRgba(
+                   backgroundColor1 || "#fff",
+                   imgopacity || 0
+                 )} ${colorLocation1}%, ${hexToRgba(
+                   backgroundColor2 || "#fff",
+                   imgopacity || 0
+                 )} ${colorLocation2}%)`
+               : undefined)) // Fallback to old format for backward compatibility
           : undefined,
       "box-shadow":
         generateCSSUnit(boxShadowHOffset, "px") +

@@ -306,6 +306,9 @@ const attributes = {
     type: "number",
     default: 70,
   },
+  gradient: {
+    type: "string",
+  },
   gradientDirection: {
     type: "number",
     default: 180,

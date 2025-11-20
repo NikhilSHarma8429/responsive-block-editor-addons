@@ -309,6 +309,9 @@ const attributes = {
   backgroundColor2: {
     type: "string",
   },
+  gradient: {
+    type: "string",
+  },
   gradientDirection: {
     type: "number",
     default: 90,

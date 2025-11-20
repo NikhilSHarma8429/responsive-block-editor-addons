@@ -252,6 +252,9 @@ const attributes = {
   backgroundColor2: {
     type: "string",
   },
+  gradient: {
+    type: "string",
+  },
   backgroundType: {
     type: "string",
     default: "none",
