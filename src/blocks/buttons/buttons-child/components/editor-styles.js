@@ -105,6 +105,7 @@ function EditorStyles(props) {
     hideWidget,
     hideWidgetTablet,
     hideWidgetMobile,
+    gradient,
   } = props.attributes;
 
   let imgopacity = opacity / 100;
@@ -180,13 +181,16 @@ function EditorStyles(props) {
     updatedBackgroundHColor = hbackground;
   }
   if (backgroundType == "gradient") {
-    updatedBackgroundImage = generateBackgroundImageEffect(
-      backgroundColor1,
-      backgroundColor2,
-      gradientDirection,
-      colorLocation1,
-      colorLocation2
-    );
+    updatedBackgroundImage = (gradient || // Use WordPress gradient format if available
+             (backgroundColor1 || backgroundColor2
+               ? `linear-gradient(${gradientDirection}deg, ${hexToRgba(
+                   backgroundColor1 || "#fff",
+                   imgopacity || 0
+                 )} ${colorLocation1}%, ${hexToRgba(
+                   backgroundColor2 || "#fff",
+                   imgopacity || 0
+                 )} ${colorLocation2}%)`
+               : undefined)) 
   }
   const isOn = responsive_globals?.is_responsive_conditions_on ?? 1;
 
@@ -246,7 +250,7 @@ function EditorStyles(props) {
       "padding-right": inheritFromTheme ? '' : generateCSSUnit(blockRightPadding, "px"),
       "padding-top": inheritFromTheme ? '' : generateCSSUnit(blockTopPadding, "px"),
       "padding-bottom": inheritFromTheme ? '' : generateCSSUnit(blockBottomPadding, "px"),
-      "background-image": updatedBackgroundImage,
+      "background-image": inheritFromTheme ? '' : updatedBackgroundImage,
       "background-color": inheritFromTheme ? '' : updatedBackgroundColor,
       "font-size": generateCSSUnit(buttonFontSize, "px"),
       "font-family": inheritFromTheme ? 'Default' : buttonFontFamily,

@@ -23,6 +23,8 @@ import borderStyleIcons from "../icons/border-style-icons";
 import RbeaExtensions from "../../../../extensions/RbeaExtensions";
 import PresetControl from "../../../../settings-components/PresetSettings";
 import {presets, resetPreset} from "./button-presets";
+import { GradientPicker } from "@wordpress/components";
+import { hexToRgba } from "../../../../utils/index.js";
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -182,6 +184,7 @@ export default class Inspector extends Component {
 				buttonPreset,
 				noFollow,
 				inheritFromThemeLocalTimestamp,
+				gradient,
 			},
 			setAttributes,
 		} = this.props;
@@ -254,6 +257,55 @@ export default class Inspector extends Component {
 				label: __("900", "responsive-block-editor-addons"),
 			},
 		];
+
+		 // Gradient options for WordPress GradientPicker (same as container)
+		const gradientOptions = [
+			{
+			name: 'JShine',
+			gradient:
+				'linear-gradient(135deg,#12c2e9 0%,#c471ed 50%,#f64f59 100%)',
+			slug: 'jshine',
+			},
+			{
+			name: 'Moonlit Asteroid',
+			gradient:
+				'linear-gradient(135deg,#0F2027 0%, #203A43 0%, #2c5364 100%)',
+			slug: 'moonlit-asteroid',
+			},
+			{
+			name: 'Rastafarie',
+			gradient:
+				'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
+			slug: 'rastafari',
+			},
+		];
+	
+		// Convert old gradient attributes to WordPress gradient format if needed
+		const getGradientValue = () => {
+			// If gradient already exists (WordPress format), use it
+			if (gradient) {
+			return gradient;
+			}
+			
+			// Otherwise, convert from old attributes to WordPress format
+			if (backgroundColor1 || backgroundColor2) {
+			const imgopacity = opacity ? opacity / 100 : 1;
+			const color1 = hexToRgba(backgroundColor1 || "#fff", imgopacity);
+			const color2 = hexToRgba(backgroundColor2 || "#fff", imgopacity);
+			const location1 = colorLocation1 !== undefined ? colorLocation1 : 0;
+			const location2 = colorLocation2 !== undefined ? colorLocation2 : 100;
+			const direction = gradientDirection !== undefined ? gradientDirection : 90;
+			
+			return `linear-gradient(${direction}deg, ${color1} ${location1}%, ${color2} ${location2}%)`;
+			}
+			
+			return undefined;
+		};
+	
+		// Handle gradient change - save to new format
+		const onGradientChange = (value) => {
+			setAttributes({ gradient: value });
+		};
 
 		const backgroundColorControl = (
 			<Fragment>
@@ -626,11 +678,12 @@ export default class Inspector extends Component {
 									)}
 									{"gradient" == backgroundType && (
 										<Fragment>
-										<GradientBackgroundControl
-										  {...this.props}
-										  showHoverGradient={false}
-										/>
-									  </Fragment>
+											<GradientPicker
+												value={getGradientValue()}
+												onChange={onGradientChange}
+												gradients={gradientOptions}
+											/>
+										</Fragment>
 									)}
 								</PanelBody>
 							</Fragment>

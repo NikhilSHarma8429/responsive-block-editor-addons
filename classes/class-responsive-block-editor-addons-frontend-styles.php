@@ -3831,13 +3831,18 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			}
 
 			if ( 'gradient' === $attr['backgroundType'] ) {
-				$updated_background_image = self::generate_background_image_effect(
-					$attr['backgroundColor1'],
-					$attr['backgroundColor2'],
-					$attr['gradientDirection'],
-					$attr['colorLocation1'],
-					$attr['colorLocation2']
-				);
+				$updated_background_image = 
+					( ! empty( $attr['gradient'] ) 
+						? $attr['gradient'] 
+						: ( ! empty( $attr['backgroundColor1'] ) || ! empty( $attr['backgroundColor2'] )
+							? 'linear-gradient(' .
+								$attr['gradientDirection'] .
+								'deg, ' .
+								self::hex_to_rgb( $attr['backgroundColor1'] ? $attr['backgroundColor1'] : '#fff', $imgopacity ) .
+								' ' . ( isset( $attr['colorLocation1'] ) ? $attr['colorLocation1'] : 0 ) . '%, ' .
+								self::hex_to_rgb( $attr['backgroundColor2'] ? $attr['backgroundColor2'] : '#fff', $imgopacity ) .
+								' ' . ( isset( $attr['colorLocation2'] ) ? $attr['colorLocation2'] : 100 ) . '%)'
+							: null ));
 			}
 			$is_on = array_column( (array) get_option( 'rbea_blocks' ), 'status', 'key' )['responsive-conditions'] ?? 1;
 			$global_inherit_from_theme = get_option( 'rbea_global_inherit_from_theme');
@@ -3898,7 +3903,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'padding-right'              => $flag ? '' : self::get_css_value( $attr['blockRightPadding'], 'px' ),
 					'padding-top'                => $flag ? '' : self::get_css_value( $attr['blockTopPadding'], 'px' ),
 					'padding-bottom'             => $flag ? '' : self::get_css_value( $attr['blockBottomPadding'], 'px' ),
-					'background-image'           => $updated_background_image,
+					'background-image'           => $flag ? '' : $updated_background_image,
 					'background-color'           => $flag ? '' : $attr['background'],
 					'font-size'                  => $flag ? '' : self::get_css_value( $attr['buttonFontSize'], 'px' ),
 					'font-family'                => $flag ? 'Default' : $attr['buttonFontFamily'],
